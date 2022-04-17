@@ -49,10 +49,6 @@ public class Titlescreen {
         startButton.setFont(noramlFont);
 
 
-
-
-
-
         titleNamePanel.add(titelNameLabel);
         startButtonPanel.add(startButton);
 
@@ -67,6 +63,10 @@ public class Titlescreen {
     }
     public void stopSound(){
         sound.stop();
+    }
+    public void playSound(int n){
+        sound.setFile(n);
+        sound.play();
     }
 
 
