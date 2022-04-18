@@ -1,6 +1,8 @@
 package GUI;
 
+import GUI.UI.Controls;
 import Music.Sound;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +20,7 @@ public class Titlescreen {
     Font noramlFont = new Font("Times New Roman", Font.PLAIN, 30);
     Color backgroundColor = Color.BLACK;
     Sound sound = new Sound();
+    Controls action = new Controls();
 
     public void screen() {
         int height = 800;
@@ -47,6 +50,7 @@ public class Titlescreen {
         startButton.setBackground(Color.BLACK);
         startButton.setForeground(Color.WHITE);
         startButton.setFont(noramlFont);
+        startButton.addActionListener(action);
 
 
         titleNamePanel.add(titelNameLabel);

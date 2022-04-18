@@ -8,7 +8,7 @@ import java.net.URL;
 
 public class Sound {
     Clip clip;
-    //This is to track what audio file we choos and also ad later sound effects
+    //This is to track what audio file we choose and also ad later sound effects
     URL soundURL[] = new URL[69];
 
 
