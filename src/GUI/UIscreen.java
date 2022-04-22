@@ -1,6 +1,5 @@
 package GUI;
 
-//import GUI.UI.Controls;
 import GUI.UI.ChoiceControls;
 import Music.Sound;
 
@@ -24,7 +23,6 @@ public class UIscreen {
     Color backgroundColor = Color.BLACK;
     Color foregroundColor = Color.WHITE;
     Sound sound = new Sound();
-    //  Controls action = new Controls();
 
     public void createScreen(ChoiceControls choiceHandler) {
         int height = 800;

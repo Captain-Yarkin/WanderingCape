@@ -1,12 +1,14 @@
+package Game;
+
 import GUI.UI.ChoiceControls;
 import GUI.UI.VisibilityManager;
 import GUI.UIscreen;
 //import GUI.UI.Controls;
 
 public class Game {
-    ChoiceControls choiceHandler = new ChoiceControls();
+    ChoiceControls choiceHandler = new ChoiceControls(this);
     UIscreen ui = new UIscreen();
-    VisibilityManager visibilityManager = new VisibilityManager(ui);
+    public VisibilityManager visibilityManager = new VisibilityManager(ui);
 
     public static void main(String[] args) {
         new Game();
