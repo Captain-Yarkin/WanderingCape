@@ -10,7 +10,7 @@ public class VisibilityManager implements IVisibilityManager {
 
     UIscreen ui;
     public VisibilityManager(UIscreen userInterface){
-        ui = userInterface;
+        this.ui = userInterface;
     }
 
     /**
