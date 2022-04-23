@@ -15,7 +15,7 @@ public class Sound {
      * Choose what sound to play for the current action
      */
     public Sound(){
-        soundURL[0] = getClass().getResource("/resource/runescapeTheme.wav");
+        soundURL[0] = getClass().getResource("/Resource/runescapeTheme.wav");
     }
 
     /**

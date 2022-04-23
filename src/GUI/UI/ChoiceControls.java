@@ -10,7 +10,7 @@ public class ChoiceControls implements ActionListener {
     Game game;
 
     public ChoiceControls(Game gaming){
-        game = gaming;
+        this.game = gaming;
     }
 
     /**
