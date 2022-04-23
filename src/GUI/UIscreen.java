@@ -24,9 +24,14 @@ public class UIscreen {
     Color foregroundColor = Color.WHITE;
     Sound sound = new Sound();
 
+    /**
+     * This creates the user interface for how the screen parametars are and how the user sees the game.
+     * @param choiceHandler
+     */
+    //This build currently does not support fullscreen
     public void createScreen(ChoiceControls choiceHandler) {
-        int height = 800;
-        int width = 600;
+        int height = 1000;
+        int width = 800;
 
         // GAME WINDOW
         gameWindow = new JFrame();
@@ -39,7 +44,7 @@ public class UIscreen {
 
         // TITLE SCREEN
         titleNamePanel = new JPanel();
-        titleNamePanel.setBounds(100,150,600,100);
+        titleNamePanel.setBounds(200,250,600,100);
         titleNamePanel.setBackground(backgroundColor);
         titelNameLabel = new JLabel(title.toUpperCase());
         titelNameLabel.setForeground(foregroundColor);
@@ -47,7 +52,7 @@ public class UIscreen {
         titleNamePanel.add(titelNameLabel);
 
         startButtonPanel = new JPanel();
-        startButtonPanel.setBounds(300,400, 200, 100);
+        startButtonPanel.setBounds(400,500, 200, 100);
         startButtonPanel.setBackground(backgroundColor);
         startButton = new JButton("START GAME");
         startButton.setBackground(backgroundColor);
@@ -65,12 +70,12 @@ public class UIscreen {
 
             //Where the text appears to describe the scene
         mainTextPanel = new JPanel();
-        mainTextPanel.setBounds(100,100,600,250);
+        mainTextPanel.setBounds(100,100,800,350);
         mainTextPanel.setBackground(backgroundColor);
         gameWindow.add(mainTextPanel);
 
         mainTextArea = new JTextArea("Testing the main text Area. Are we good houston?");
-        mainTextArea.setBounds(100,100,600,250);
+        mainTextArea.setBounds(100,100,800,350);
         mainTextArea.setBackground(backgroundColor);
         mainTextArea.setForeground(foregroundColor);
         mainTextArea.setFont(noramlFont);
@@ -81,7 +86,7 @@ public class UIscreen {
 
             //Choice box with buttons
         choiceButtonPanel = new JPanel();
-        choiceButtonPanel.setBounds(250,350,300,150);
+        choiceButtonPanel.setBounds(350,500,300,150);
         choiceButtonPanel.setBackground(backgroundColor);
         choiceButtonPanel.setLayout(new GridLayout(4,1));
         gameWindow.add(choiceButtonPanel);
@@ -125,7 +130,7 @@ public class UIscreen {
         choiceButtonPanel.add(choice4);
             //Player Panel
         playerPanel = new JPanel();
-        playerPanel.setBounds(100,15,600,50);
+        playerPanel.setBounds(100,15,900,50);
         playerPanel.setBackground(backgroundColor);
         playerPanel.setLayout(new GridLayout(1,4));
         gameWindow.add(playerPanel);
@@ -139,7 +144,7 @@ public class UIscreen {
         healthNumberLabel.setFont(noramlFont);
         healthNumberLabel.setForeground(foregroundColor);
         playerPanel.add(healthNumberLabel);
-            //Weapon Label name
+            //Weapon Label name | "Current bug this label is gray and not white"
         weaponLabel = new JLabel("Weapon: ");
         weaponLabel.setFont(noramlFont);
         healthLabel.setForeground(foregroundColor);

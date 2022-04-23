@@ -20,6 +20,9 @@ public class Storyline {
         this.visibilityManager = vm;
     }
 
+    /**
+     * This is what the players starts with in the game.
+     */
     public void defaultStatus(){
         //PLAYER HEALTH
         player.health = 10;
