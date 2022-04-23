@@ -14,7 +14,8 @@ public class Game {
     ChoiceControls choiceHandler = new ChoiceControls(this);
     UIscreen uIscreen = new UIscreen();
     public VisibilityManager visibilityManager = new VisibilityManager(uIscreen);
-    Storyline storyline = new Storyline(this, uIscreen, visibilityManager);
+    public Storyline storyline = new Storyline(this, uIscreen, visibilityManager);
+    public String nextPosition1, nextPosition2, nextPosition3, nextPosition4;
     public static void main(String[] args) {
         new Game();
     }

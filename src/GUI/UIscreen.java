@@ -13,13 +13,9 @@ public class UIscreen {
     public JLabel titelNameLabel, healthLabel, healthNumberLabel, weaponLabel, weaponNameLabel;
     public JButton startButton, choice1, choice2, choice3, choice4;
     public JTextArea mainTextArea;
-
     String title = "Wandering Cape";
-
-
-
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 60);
-    Font noramlFont = new Font("Times New Roman", Font.PLAIN, 30);
+    Font noramlFont = new Font("Times New Roman", Font.PLAIN, 28);
     Color backgroundColor = Color.BLACK;
     Color foregroundColor = Color.WHITE;
     Sound sound = new Sound();
