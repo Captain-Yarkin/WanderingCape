@@ -31,7 +31,6 @@ public class Storyline {
         //PLAYER EQUIPPED WEAPON
         player.equippedWeapon = new WeaponDagger();
         uIscreen.weaponNameLabel.setText(player.equippedWeapon.name);
-
     }
 
 }

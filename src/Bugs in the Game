@@ -1,0 +1,5 @@
+---Current bugs---
+* Wepons Label in UIscreen is showing as gray and not white.
+
+---Fixed bugs---
+* The VisibilityManger veiws ui as "null" and cant change anything.

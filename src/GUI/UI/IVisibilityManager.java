@@ -6,5 +6,5 @@ package GUI.UI;
 public interface IVisibilityManager {
 
     public void showTitleScreen();
-    public void titleScreenToTown();
+    public void titleScreenToChoiceScreen();
 }

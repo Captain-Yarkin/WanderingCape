@@ -1,11 +1,11 @@
-package Equipment.Weapons;
+package Equipment.Weapons.SecretWeapons;
 
 import Equipment.WeaponMold;
 
 public class WeaponGun extends WeaponMold {
     public WeaponGun(){
         name = "Gun";
-        damage = 100;
+        damage = 1000;
 
     }
 }

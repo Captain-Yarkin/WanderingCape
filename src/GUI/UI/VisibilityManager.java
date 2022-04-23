@@ -18,9 +18,10 @@ public class VisibilityManager implements IVisibilityManager {
      */
     @Override
     public void showTitleScreen() {
+        //everything is showing at the start. This one shows only the start screen
         ui.titleNamePanel.setVisible(true);
         ui.startButtonPanel.setVisible(true);
-
+        //This hides everything while the tilescreen is shown
         ui.mainTextPanel.setVisible(false);
         ui.choiceButtonPanel.setVisible(false);
         ui.playerPanel.setVisible(false);
@@ -30,7 +31,7 @@ public class VisibilityManager implements IVisibilityManager {
      * Hide TitleScreen show next screen
      */
     @Override
-    public void titleScreenToTown() {
+    public void titleScreenToChoiceScreen() {
         ui.titleNamePanel.setVisible(false);
         ui.startButtonPanel.setVisible(false);
 

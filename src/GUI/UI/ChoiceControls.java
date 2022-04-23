@@ -1,6 +1,5 @@
 package GUI.UI;
 
-import GUI.UIscreen;
 import Game.Game;
 
 import java.awt.event.ActionEvent;
@@ -23,7 +22,7 @@ public class ChoiceControls implements ActionListener {
         String playerChoice = event.getActionCommand();
 
         switch (playerChoice){
-            case "start":game.visibilityManager.titleScreenToTown();
+            case "start":game.visibilityManager.titleScreenToChoiceScreen();
             case "choice1":break;
             case "choice2":break;
             case "choice3":break;
