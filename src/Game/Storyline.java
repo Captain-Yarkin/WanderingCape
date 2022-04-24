@@ -2,12 +2,14 @@ package Game;
 
 import Creature.CreatureMold;
 import Creature.Monsters.MonsterBush;
+import Creature.NPC.NPCPeasant;
+
 import Equipment.Weapons.WeaponDagger;
-import Equipment.Weapons.WeaponHand;
 import Equipment.Weapons.WeaponLongsword;
+
 import GUI.UI.VisibilityManager;
 import GUI.UIscreen;
-import Music.Sound;
+
 import Player.Player;
 
 /**
@@ -20,7 +22,12 @@ public class Storyline {
     Player player = new Player();
     CreatureMold creatue;
 
-    Sound sound = new Sound();
+    //KILL LIST
+    int bush;
+    int troll;
+    int bandit;
+    int peasant;
+
 
     public Storyline(Game gaming, UIscreen ui, VisibilityManager vm){
         this.game = gaming;
@@ -39,6 +46,15 @@ public class Storyline {
         //PLAYER EQUIPPED WEAPON
         player.equippedWeapon = new WeaponDagger();
         uIscreen.weaponNameLabel.setText(player.equippedWeapon.name);
+
+        //KILL LIST
+        bush = 0;
+        troll = 0;
+        bandit = 0;
+        peasant = 0;
+
+
+
     }
 
     /**
@@ -70,6 +86,7 @@ public class Storyline {
             case "monsterAttack" -> monsterAttack();
             case "battle" -> battle();
             case "newGame" -> newGame();
+            case "monsterSlained" -> monsterSlain();
 
 
         }
@@ -132,7 +149,7 @@ public class Storyline {
 
     }
     public void talkToBartender3(){
-        uIscreen.mainTextArea.setText("Human Bartender: Rumours you ask? Aye there are goblins in to the east of the east of the village, and a dangourouse Troll to the south");
+        uIscreen.mainTextArea.setText("Human Bartender: Rumours you ask? Aye I got some for you.\nTo the east of the village a bandit has stolen a might potion.\nTo the north there are rumours of a sword.\nTo the west there is a smith that can forge you some new armor\nTo the south there is a dangerous Troll killing our villagers");
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Thank you! I will go");
         uIscreen.choice2.setText("Last night?");
@@ -146,14 +163,19 @@ public class Storyline {
 
     }
     public void wakePeasant(){
-        uIscreen.mainTextArea.setText("");
-        // Dont the characters longer the 21 characters or they go outside the box.
-        uIscreen.choice1.setText("");
-        uIscreen.choice2.setText("");
-        uIscreen.choice3.setText("");
-        uIscreen.choice4.setText("");
+        creatue = new NPCPeasant();
+        uIscreen.playSound(1);
+        peasant++;
 
-        game.nextPosition1 = "";
+
+        uIscreen.mainTextArea.setText("As you reach to wake up the peasant. He jolts up raising his fists attacking you. \n\nYou encounter: " + creatue.name);
+        // Dont the characters longer the 21 characters or they go outside the box.
+        uIscreen.choice1.setText("Battle");
+        uIscreen.choice2.setText("*To drunk to Flee*");
+        uIscreen.choice3.setText("*To drunk to Flee*");
+        uIscreen.choice4.setText("*To drunk to Flee*");
+
+        game.nextPosition1 = "battle";
         game.nextPosition2 = "";
         game.nextPosition3 = "";
         game.nextPosition4 = "";
@@ -260,10 +282,14 @@ public class Storyline {
     }
 
     public void battle(){
-        uIscreen.mainTextArea.setText(creatue.name + " health points: " + creatue.health + "\n\nWhat do you do");
+        uIscreen.mainTextArea.setText(creatue.name + " has <" + creatue.health + "> health points\n\nWhat do you do!");
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Attack with Weapons");
-        uIscreen.choice2.setText("Flee");
+        if (peasant == 1){
+            uIscreen.choice2.setText("");
+        } else {
+            uIscreen.choice2.setText("Flee");
+        }
         uIscreen.choice3.setText("");
         uIscreen.choice4.setText("");
 
@@ -275,7 +301,7 @@ public class Storyline {
     }
 
     public void playerAttack(){
-        int playerDamage = new java.util.Random().nextInt(player.equippedWeapon.damage + 1);
+        int playerDamage = new java.util.Random().nextInt(player.equippedWeapon.damage)+1;
 
         uIscreen.mainTextArea.setText("You attacked the " + creatue.name + " and do " + playerDamage + " damage!");
         creatue.health = creatue.health - playerDamage;
@@ -292,10 +318,19 @@ public class Storyline {
             game.nextPosition4 = "";
         }
         else if (creatue.health<1){
-            game.nextPosition1 = "bushSlained";
+            game.nextPosition1 = "monsterSlained";
             game.nextPosition2 = "";
             game.nextPosition3 = "";
             game.nextPosition4 = "";
+        }
+        if (creatue.name.equals("Bush") && creatue.health<1){
+            bush++;
+        }
+        if (creatue.name.equals("Bandit") && creatue.health<1){
+            bandit++;
+        }
+        if (creatue.name.equals("Greg") && creatue.health<1){
+            peasant++;
         }
     }
 
@@ -324,6 +359,22 @@ public class Storyline {
             game.nextPosition4 = "";
         }
 
+
+    }
+    public void monsterSlain(){
+        if(bush == 1){
+            bushSlained();
+        }
+        if(bandit == 1){
+            banditSlain();
+        }
+        if(troll == 1){
+            trollSlain();
+        }
+        if(peasant == 2){
+            peasantSlain();
+        }
+
     }
     public void bushSlained(){
         uIscreen.mainTextArea.setText("You defeated the "+ creatue.name + " the monster was a simple bush" + "\nWhat do you do?");
@@ -338,6 +389,15 @@ public class Storyline {
         game.nextPosition3 = "";
         game.nextPosition4 = "north1Forest";
 
+    }
+    public void banditSlain(){
+
+    }
+    public void trollSlain(){
+
+    }
+    public void peasantSlain(){
+        uIscreen.mainTextArea.setText("He Dead bro");
     }
 
     public void gameoverDeath(){
@@ -401,6 +461,7 @@ public class Storyline {
     }
 
     public void newGame(){
+        uIscreen.playTheme(0);
         defaultStatus();
         visibilityManager.showTitleScreen();
     }

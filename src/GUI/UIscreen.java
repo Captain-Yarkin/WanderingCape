@@ -158,7 +158,8 @@ public class UIscreen {
         sound.play();
         sound.loop();
     }
-    public void stopSound(){
+    public void stopSound(int n){
+        sound.setFile(n);
         sound.stop();
     }
     public void playSound(int n){

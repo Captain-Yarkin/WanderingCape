@@ -22,8 +22,9 @@ public class Game {
     public Game() {
         uIscreen.createScreen(choiceHandler);
         storyline.defaultStatus();
-        visibilityManager.showTitleScreen();
-        uIscreen.playTheme(0);
+        storyline.newGame();
+        //visibilityManager.showTitleScreen();
+        //uIscreen.playSound(0);
     }
 }
 

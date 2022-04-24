@@ -8,5 +8,6 @@ public class MonsterTroll extends CreatureMold {
         name = "Troll";
         health = 100;
         damage = 13;
+        attackMessage = "The Trolls fist hits you dealing:";
     }
 }
