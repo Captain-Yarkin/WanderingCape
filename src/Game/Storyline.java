@@ -1,5 +1,7 @@
 package Game;
 
+import Creature.CreatureMold;
+import Creature.Monsters.MonsterBush;
 import Equipment.Weapons.WeaponDagger;
 import Equipment.Weapons.WeaponLongsword;
 import GUI.UI.VisibilityManager;
@@ -15,6 +17,7 @@ public class Storyline {
     UIscreen uIscreen;
     VisibilityManager visibilityManager;
     Player player = new Player();
+    CreatureMold creatue;
 
     Sound sound = new Sound();
 
@@ -43,6 +46,7 @@ public class Storyline {
      */
     public void selectPosition(String nextPosition){
         switch (nextPosition) {
+            case "tavern" -> tavern();
             case "talkToBartender" -> talkToBartender();
             case "wakePeasant" -> wakePeasant();
             case "goOutside" -> goOutside();
@@ -58,6 +62,15 @@ public class Storyline {
             case "gameover2" -> gameover2();
             case "swordEquipped" -> swordEquipped();
             case "north2NoSword" -> north2NoSword();
+            case "bushBattle" -> battle();
+            case "gameoverDeath" -> gameoverDeath();
+            case "bushSlained" -> bushSlained();
+            case "playerAttack" -> playerAttack();
+            case "monsterAttack" -> monsterAttack();
+            case "battle" -> battle();
+            case "newGame" -> newGame();
+
+
         }
     }
 
@@ -229,8 +242,118 @@ public class Storyline {
 
     }
     public void bushEncounter(){
+        creatue = new MonsterBush();
+
+        uIscreen.mainTextArea.setText("As you reach for the bush. It becomes starts to move\nYou encouter " + creatue.name);
+        // Dont the characters longer the 21 characters or they go outside the box.
+        uIscreen.choice1.setText("Battle");
+        uIscreen.choice2.setText("Flee");
+        uIscreen.choice3.setText("");
+        uIscreen.choice4.setText("");
+
+        game.nextPosition1 = "bushBattle";
+        game.nextPosition2 = "north1Forest";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
 
     }
+
+    public void battle(){
+        uIscreen.mainTextArea.setText(creatue.name + " health points: " + creatue.health + "\n\nWhat do you do");
+        // Dont the characters longer the 21 characters or they go outside the box.
+        uIscreen.choice1.setText("Attack with Weapons");
+        uIscreen.choice2.setText("Flee");
+        uIscreen.choice3.setText("");
+        uIscreen.choice4.setText("");
+
+        game.nextPosition1 = "playerAttack";
+        game.nextPosition2 = "north1Forest";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
+
+    }
+
+    public void playerAttack(){
+        int playerDamage = new java.util.Random().nextInt(player.equippedWeapon.damage + 1);
+
+        uIscreen.mainTextArea.setText("You attacked the " + creatue.name + " and do " + playerDamage + " damage!");
+        creatue.health = creatue.health - playerDamage;
+
+        uIscreen.choice1.setText("Continue");
+        uIscreen.choice2.setText("");
+        uIscreen.choice3.setText("");
+        uIscreen.choice4.setText("");
+
+        if(creatue.health>0){
+            game.nextPosition1 = "monsterAttack";
+            game.nextPosition2 = "";
+            game.nextPosition3 = "";
+            game.nextPosition4 = "";
+        }
+        else if (creatue.health<1){
+            game.nextPosition1 = "bushSlained";
+            game.nextPosition2 = "";
+            game.nextPosition3 = "";
+            game.nextPosition4 = "";
+        }
+    }
+
+    public void monsterAttack(){
+        int monsterDamage = new java.util.Random().nextInt(creatue.damage + 1);
+
+        player.health = player.health - monsterDamage;
+        uIscreen.healthNumberLabel.setText("" + player.health);
+        uIscreen.mainTextArea.setText(creatue.name + " attacks you dealing "+ monsterDamage);
+
+        uIscreen.choice1.setText("Continue");
+        uIscreen.choice2.setText("");
+        uIscreen.choice3.setText("");
+        uIscreen.choice4.setText("");
+
+        if(player.health>0){
+            game.nextPosition1 = "battle";
+            game.nextPosition2 = "";
+            game.nextPosition3 = "";
+            game.nextPosition4 = "";
+        }
+        else if (player.health<1){
+            game.nextPosition1 = "gameoverDeath";
+            game.nextPosition2 = "";
+            game.nextPosition3 = "";
+            game.nextPosition4 = "";
+        }
+
+    }
+    public void bushSlained(){
+        uIscreen.mainTextArea.setText("You defeated the "+ creatue.name + " the monster was a simple bush" + "\nWhat do you do?");
+        // Dont the characters longer the 21 characters or they go outside the box.
+        uIscreen.choice1.setText("Punch the bush");
+        uIscreen.choice2.setText("");
+        uIscreen.choice3.setText("");
+        uIscreen.choice4.setText("Go back");
+
+        game.nextPosition1 = "";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "north1Forest";
+
+    }
+
+    public void gameoverDeath(){
+        uIscreen.mainTextArea.setText("You are dead\n\nGAME OVER");
+        // Dont the characters longer the 21 characters or they go outside the box.
+        uIscreen.choice1.setText("Play Again");
+        uIscreen.choice2.setText("");
+        uIscreen.choice3.setText("");
+        uIscreen.choice4.setText("");
+
+        game.nextPosition1 = "newGame";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
+
+    }
+
     public void gameover2(){
 
     }
@@ -274,6 +397,11 @@ public class Storyline {
         game.nextPosition2 = "";
         game.nextPosition3 = "";
         game.nextPosition4 = "";
+    }
+
+    public void newGame(){
+        defaultStatus();
+        visibilityManager.showTitleScreen();
     }
 
 
