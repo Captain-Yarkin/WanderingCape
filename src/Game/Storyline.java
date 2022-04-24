@@ -3,6 +3,7 @@ package Game;
 import Creature.CreatureMold;
 import Creature.Monsters.MonsterBush;
 import Equipment.Weapons.WeaponDagger;
+import Equipment.Weapons.WeaponHand;
 import Equipment.Weapons.WeaponLongsword;
 import GUI.UI.VisibilityManager;
 import GUI.UIscreen;
