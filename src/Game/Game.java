@@ -24,7 +24,7 @@ public class Game {
         storyline.defaultStatus();
         storyline.newGame();
         //visibilityManager.showTitleScreen();
-        //uIscreen.playSound(0);
+        uIscreen.playSound(0);
     }
 }
 

@@ -4,6 +4,7 @@ import Creature.CreatureMold;
 import Creature.Monsters.MonsterBush;
 import Creature.NPC.NPCPeasant;
 
+import Equipment.Weapons.SecretWeapons.WeaponGun;
 import Equipment.Weapons.WeaponDagger;
 import Equipment.Weapons.WeaponLongsword;
 
@@ -194,14 +195,14 @@ public class Storyline {
         game.nextPosition4 = "south1Swamp";
     }
     public void backToSleep(){
-        uIscreen.mainTextArea.setText("As you fall a sleep for the final time. It seems like you dont wake up");
+        uIscreen.mainTextArea.setText("As you fall a sleep for the final time. It seems like you dont wake up.\nGAME OVER");
         // Dont the characters longer the 21 characters or they go outside the box.
-        uIscreen.choice1.setText("");
+        uIscreen.choice1.setText("Play Again");
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
         uIscreen.choice4.setText("");
 
-        game.nextPosition1 = "";
+        game.nextPosition1 = "newGame";
         game.nextPosition2 = "";
         game.nextPosition3 = "";
         game.nextPosition4 = "";
@@ -397,7 +398,22 @@ public class Storyline {
 
     }
     public void peasantSlain(){
-        uIscreen.mainTextArea.setText("He Dead bro");
+        uIscreen.mainTextArea.setText("You kill Gred. Oh the Humanity!\nAs you stand over Gregs body. You pick up a tubed hand crossbow");
+        player.equippedWeapon = new WeaponGun();
+        uIscreen.weaponNameLabel.setText(player.equippedWeapon.name);
+        peasant++;
+
+        uIscreen.choice1.setText("Talk to the Bartender");
+        uIscreen.choice2.setText("Go Outside");
+        uIscreen.choice3.setText("");
+        uIscreen.choice4.setText("");
+
+        game.nextPosition1 = "talkToBartender";
+        game.nextPosition2 = "goOutside";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
+
+
     }
 
     public void gameoverDeath(){
@@ -461,7 +477,6 @@ public class Storyline {
     }
 
     public void newGame(){
-        uIscreen.playTheme(0);
         defaultStatus();
         visibilityManager.showTitleScreen();
     }
