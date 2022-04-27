@@ -103,20 +103,6 @@ public class Storyline {
         }
     }
 
-    void mold(){
-        uIscreen.mainTextArea.setText("");
-        // Dont the characters longer the 21 characters or they go outside the box.
-        uIscreen.choice1.setText("");
-        uIscreen.choice2.setText("");
-        uIscreen.choice3.setText("");
-        uIscreen.choice4.setText("");
-
-        game.nextPosition1 = "";
-        game.nextPosition2 = "";
-        game.nextPosition3 = "";
-        game.nextPosition4 = "";
-    }
-
     public void tavern(){
         uIscreen.mainTextArea.setText("You awaken next to a peasant after a heavy night drinking in the tavern not remembering anything from last night. A bartender is cleaning some cups behinde the bar. \nWhat do you do?");
         // Dont the characters longer the 21 characters or they go outside the box.
