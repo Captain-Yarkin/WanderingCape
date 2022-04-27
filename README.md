@@ -13,3 +13,5 @@ To play the game you need to
 2. In the "Wandering Cape" repository open **src** -> **Game** -> **Game.java**
 3. Launch **Game.java**.(The game should start without a probelm)
 4. **Game.java** works the same way as if it was a **Main.java**
+
+Windows check
