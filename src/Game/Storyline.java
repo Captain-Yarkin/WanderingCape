@@ -97,6 +97,7 @@ public class Storyline {
             case "west4Smith" -> west4Smith();
             case "west5Smith" -> west5Smith();
             case "west6Reward" -> west6Reward();
+            case "trollEncounter" -> trollEncounter();
 
 
         }
@@ -182,7 +183,7 @@ public class Storyline {
     }
     public void wakePeasant(){
         creatue = new NPCPeasant();
-        uIscreen.playSound(1);
+
         peasant = 1;
 
 
@@ -346,6 +347,18 @@ public class Storyline {
     public void trollEncounter(){
         creatue = new MonsterTroll();
 
+        uIscreen.mainTextArea.setText("You go forward towards the scary noise and see a giant troll\nYou encouter " + creatue.name + "\nThe Troll looks very strong and has <" + creatue.health + "> health points");
+
+        uIscreen.choice1.setText("Battle");
+        uIscreen.choice2.setText("Leave to get stronger");
+        uIscreen.choice3.setText("");
+        uIscreen.choice4.setText("");
+
+        game.nextPosition1 = "battle";
+        game.nextPosition2 = "south1Swamp";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
+
 
     }
 
@@ -396,6 +409,7 @@ public class Storyline {
 
     public void playerAttack(){
         int playerDamage;
+        uIscreen.playSound(1);
 
         if (mightPotion == 2){
             playerDamage = new java.util.Random().nextInt(player.equippedWeapon.damage)+8;
@@ -548,7 +562,7 @@ public class Storyline {
         uIscreen.mainTextArea.setText("You are dead\n\nGAME OVER");
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Play Again");
-        uIscreen.choice2.setText("a");
+        uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
         uIscreen.choice4.setText("");
 
@@ -698,17 +712,17 @@ public class Storyline {
     }
 
     public void south1Swamp(){
-        uIscreen.mainTextArea.setText("");
+        uIscreen.mainTextArea.setText("You go south to the swamp. Your hear roars and large foot steps.\n\nWhat do You do?");
         // Dont the characters longer the 21 characters or they go outside the box.
-        uIscreen.choice1.setText("");
+        uIscreen.choice1.setText("Go toward the sound");
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
-        uIscreen.choice4.setText("");
+        uIscreen.choice4.setText("Go back");
 
-        game.nextPosition1 = "";
+        game.nextPosition1 = "trollEncounter";
         game.nextPosition2 = "";
         game.nextPosition3 = "";
-        game.nextPosition4 = "";
+        game.nextPosition4 = "goOutside";
     }
 
     public void newGame(){

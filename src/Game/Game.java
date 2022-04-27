@@ -26,7 +26,7 @@ public class Game {
         storyline.defaultStatus();
         storyline.newGame();
         //visibilityManager.showTitleScreen();
-        uIscreen.playTheme(0);
+        //uIscreen.playTheme(0);
     }
 }
 
