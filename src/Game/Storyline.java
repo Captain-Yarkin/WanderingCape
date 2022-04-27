@@ -23,7 +23,7 @@ public class Storyline {
     UIscreen uIscreen;
     VisibilityManager visibilityManager;
     Player player = new Player();
-    CreatureMold creatue;
+    CreatureMold creature;
 
     //KILL/INFO LIST
     int bush,troll,bandit,peasant, infoBandit, mightPotion;
@@ -98,13 +98,14 @@ public class Storyline {
             case "west5Smith" -> west5Smith();
             case "west6Reward" -> west6Reward();
             case "trollEncounter" -> trollEncounter();
+            case "gameoverNorth" -> gameoverNorth();
 
 
         }
     }
 
     public void tavern(){
-        uIscreen.mainTextArea.setText("You awaken next to a peasant after a heavy night drinking in the tavern not remembering anything from last night. A bartender is cleaning some cups behinde the bar. \nWhat do you do?");
+        uIscreen.mainTextArea.setText("You awaken next to a peasant after a heavy night drinking in the tavern not remembering anything from last night. A bartender is cleaning some cups behind the bar. \nWhat do you do?");
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Talk to the bartender");
         uIscreen.choice2.setText("Wake the peasant");
@@ -119,11 +120,11 @@ public class Storyline {
 
     public void talkToBartender() {
         if (peasant != 3) {
-        uIscreen.mainTextArea.setText("You approach the bartender. The man waves at you greeting your after your slumber. \nHuman Bartender: Hello friend long night? \nWhat do you ask the bartender?");
+        uIscreen.mainTextArea.setText("You approach the bartender. The man waves at you greeting you after your slumber. \nHuman Bartender: Hello friend long night? \nWhat do you ask the bartender?");
         } else {
-            uIscreen.mainTextArea.setText("As you approach the bartender. He look horrified after you killed Gred, but act like nothing to not provoke you to kill him. \nHuman Bartender: Hello friend... long night...? \nWhat do you ask the bartender?");
+            uIscreen.mainTextArea.setText("As you approach the bartender. He look horrified after you killed Greg, but act like nothing to not provoke you to kill him. \nHuman Bartender: Hello friend... long night...? \nWhat do you ask the bartender?");
         }
-        // Dont the characters longer the 21 characters or they go outside the box.
+        // Don't the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Ask about Rumours");
         uIscreen.choice2.setText("Last night?");
         uIscreen.choice3.setText("Who is that peasant?");
@@ -168,12 +169,12 @@ public class Storyline {
 
     }
     public void wakePeasant(){
-        creatue = new NPCPeasant();
+        creature = new NPCPeasant();
 
         peasant = 1;
 
 
-        uIscreen.mainTextArea.setText("As you reach to wake up the peasant. He jolts up raising his fists attacking you. \n\nYou encounter: " + creatue.name);
+        uIscreen.mainTextArea.setText("As you reach to wake up the peasant. He jolts up raising his fists attacking you. \n\nYou encounter: " + creature.name);
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Battle");
         uIscreen.choice2.setText("*To drunk to Flee*");
@@ -222,7 +223,7 @@ public class Storyline {
 
         game.nextPosition1 = "north2Sword";
         game.nextPosition2 = "bushEncounter";
-        game.nextPosition3 = "gameover2";
+        game.nextPosition3 = "gameoverNorth";
         game.nextPosition4 = "goOutside";
     }
     public void north2Sword() {
@@ -281,9 +282,9 @@ public class Storyline {
 
     }
     public void bushEncounter(){
-        creatue = new MonsterBush();
+        creature = new MonsterBush();
 
-        uIscreen.mainTextArea.setText("As you reach for the bush. It becomes starts to move\nYou encouter " + creatue.name);
+        uIscreen.mainTextArea.setText("As you reach for the bush. It becomes starts to move\nYou encouter " + creature.name);
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Battle");
         uIscreen.choice2.setText("Flee");
@@ -298,7 +299,7 @@ public class Storyline {
     }
 
     public void banditEncounter(){
-        creatue = new MonsterBandit();
+        creature = new MonsterBandit();
 
         if (bandit == 3){
             uIscreen.mainTextArea.setText("You see the body of the dead bandit. Your job here is done");
@@ -331,9 +332,9 @@ public class Storyline {
 
     }
     public void trollEncounter(){
-        creatue = new MonsterTroll();
+        creature = new MonsterTroll();
 
-        uIscreen.mainTextArea.setText("You go forward towards the scary noise and see a giant troll\nYou encouter " + creatue.name + "\nThe Troll looks very strong and has <" + creatue.health + "> health points");
+        uIscreen.mainTextArea.setText("You go forward towards the scary noise and see a giant troll\nYou encouter " + creature.name + "\nThe Troll looks very strong and has <" + creature.health + "> health points");
 
         uIscreen.choice1.setText("Battle");
         uIscreen.choice2.setText("Leave to get stronger");
@@ -364,9 +365,9 @@ public class Storyline {
     }
 
     public void battle(){
-        uIscreen.mainTextArea.setText(creatue.name + " has <" + creatue.health + "> health points\n\nWhat do you do!");
+        uIscreen.mainTextArea.setText(creature.name + " has <" + creature.health + "> health points\n\nWhat do you do!");
         // Don't the characters longer the 21 characters or they go outside the box.
-        uIscreen.choice1.setText("Attack with Weapons");
+        uIscreen.choice1.setText("Attack");
         if (peasant == 1){
             uIscreen.choice2.setText("");
         } else {
@@ -404,43 +405,43 @@ public class Storyline {
         }
 
 
-        uIscreen.mainTextArea.setText("You attacked the " + creatue.name + " and do " + playerDamage + " damage!");
-        creatue.health = creatue.health - playerDamage;
+        uIscreen.mainTextArea.setText("You attacked the " + creature.name + " and do " + playerDamage + " damage!");
+        creature.health = creature.health - playerDamage;
 
         uIscreen.choice1.setText("Continue");
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
         uIscreen.choice4.setText("");
 
-        if(creatue.health>0){
+        if(creature.health>0){
             game.nextPosition1 = "monsterAttack";
             game.nextPosition2 = "";
             game.nextPosition3 = "";
             game.nextPosition4 = "";
         }
-        else if (creatue.health<1){
+        else if (creature.health<1){
             game.nextPosition1 = "monsterSlained";
             game.nextPosition2 = "";
             game.nextPosition3 = "";
             game.nextPosition4 = "";
         }
-        if (creatue.name.equals("Bush") && creatue.health<1){
+        if (creature.name.equals("Bush") && creature.health<1){
             bush = 1;
         }
-        if (creatue.name.equals("Bandit") && creatue.health<1){
+        if (creature.name.equals("Bandit") && creature.health<1){
             bandit++;
         }
-        if (creatue.name.equals("Greg") && creatue.health<1){
+        if (creature.name.equals("Greg") && creature.health<1){
             peasant = 2;
         }
     }
 
     public void monsterAttack(){
-        int monsterDamage = new java.util.Random().nextInt(creatue.damage);
+        int monsterDamage = new java.util.Random().nextInt(creature.damage);
 
         player.health = player.health - monsterDamage;
         uIscreen.healthNumberLabel.setText("" + player.health);
-        uIscreen.mainTextArea.setText(creatue.name + " attacks you dealing "+ monsterDamage);
+        uIscreen.mainTextArea.setText(creature.name + " attacks you dealing "+ monsterDamage);
 
         uIscreen.choice1.setText("Continue");
         uIscreen.choice2.setText("");
@@ -478,7 +479,7 @@ public class Storyline {
 
     }
     public void bushSlained(){
-        uIscreen.mainTextArea.setText("You defeated the "+ creatue.name + " the monster was a simple bush" + "\nWhat do you do?");
+        uIscreen.mainTextArea.setText("You defeated the "+ creature.name + " the monster was a simple bush" + "\nWhat do you do?");
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Punch the bush");
         uIscreen.choice2.setText("");
@@ -526,7 +527,7 @@ public class Storyline {
 
     }
     public void peasantSlain(){
-        uIscreen.mainTextArea.setText("You kill Gred. Oh the Humanity!\nAs you stand over Gregs body. You pick up a tubed hand crossbow");
+        uIscreen.mainTextArea.setText("You kill Greg. Oh the Humanity!\nAs you stand over Gregs body. You pick up a tubed hand crossbow");
         player.equippedWeapon = new WeaponGun();
         uIscreen.weaponNameLabel.setText(player.equippedWeapon.name);
         peasant = 3;
@@ -557,6 +558,19 @@ public class Storyline {
         game.nextPosition3 = "";
         game.nextPosition4 = "";
 
+    }
+    public void gameoverNorth(){
+        uIscreen.mainTextArea.setText("You walk of the trail and become part of the tree men, ending you adventure\n\nGAME OVER");
+        // Dont the characters longer the 21 characters or they go outside the box.
+        uIscreen.choice1.setText("Play Again");
+        uIscreen.choice2.setText("");
+        uIscreen.choice3.setText("");
+        uIscreen.choice4.setText("");
+
+        game.nextPosition1 = "newGame";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
     }
 
     public void gameoverEast(){
