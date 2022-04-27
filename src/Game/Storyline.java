@@ -708,14 +708,14 @@ public class Storyline {
     public void west6Reward(){
         uIscreen.mainTextArea.setText("Dwarf Blacksmith: Thank you very much. Here is my best armor \nAs you equip the armor you feel safer");
         mightPotion = 3;
-        player.health = player.health + 50;
+        player.health = player.health + 75;
         uIscreen.healthNumberLabel.setText("" + player.health);
 
     }
 
     public void south1Swamp(){
         uIscreen.mainTextArea.setText("You go south to the swamp. Your hear roars and large foot steps.\n\nWhat do You do?");
-        // Dont the characters longer the 21 characters or they go outside the box.
+        // Don*t the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Go toward the sound");
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
