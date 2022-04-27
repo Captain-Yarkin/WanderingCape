@@ -2,8 +2,9 @@
 
 *Wandering Cape* is a Text based RPG inspired by old adventure games form the 1980s/90s.
 
-## Background
-
+## Background Story
+You wake up in a tavern after a heavy night of drinking. You don't remember anything from last night, but the only thing you know is that you put on your cape and wander forth.
+*Adventure awaits*
 
 
 ## Instruction
