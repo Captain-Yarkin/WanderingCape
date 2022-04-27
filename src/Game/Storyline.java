@@ -83,8 +83,7 @@ public class Storyline {
             case "swordEquipped" -> swordEquipped();
             case "north2NoSword" -> north2NoSword();
             case "gameoverDeath" -> gameoverDeath();
-            case "gameoverNorth" -> gameoverNorth();
-            case "bushSlained" -> bushSlain();
+            case "bushSlained" -> bushSlained();
             case "playerAttack" -> playerAttack();
             case "monsterAttack" -> monsterAttack();
             case "battle" -> battle();
@@ -98,23 +97,10 @@ public class Storyline {
             case "west4Smith" -> west4Smith();
             case "west5Smith" -> west5Smith();
             case "west6Reward" -> west6Reward();
+            case "trollEncounter" -> trollEncounter();
 
 
         }
-    }
-
-    void mold(){
-        uIscreen.mainTextArea.setText("");
-        // Dont the characters longer the 21 characters or they go outside the box.
-        uIscreen.choice1.setText("");
-        uIscreen.choice2.setText("");
-        uIscreen.choice3.setText("");
-        uIscreen.choice4.setText("");
-
-        game.nextPosition1 = "";
-        game.nextPosition2 = "";
-        game.nextPosition3 = "";
-        game.nextPosition4 = "";
     }
 
     public void tavern(){
@@ -183,7 +169,7 @@ public class Storyline {
     }
     public void wakePeasant(){
         creatue = new NPCPeasant();
-        uIscreen.playSound(1);
+
         peasant = 1;
 
 
@@ -227,7 +213,7 @@ public class Storyline {
     }
 
     public void north1Forest(){
-        uIscreen.mainTextArea.setText("As you walk north you reach a forest. The road is long.\nYour hear sound from a bush near you \nWhat will you do?");
+        uIscreen.mainTextArea.setText("As you walk north you reach a forest. The road is long.\n Your hear sound from a bush near you \nWhat will you do?");
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Follow the road");
         uIscreen.choice2.setText("Search the bush");
@@ -236,7 +222,7 @@ public class Storyline {
 
         game.nextPosition1 = "north2Sword";
         game.nextPosition2 = "bushEncounter";
-        game.nextPosition3 = "gameoverNorth";
+        game.nextPosition3 = "gameover2";
         game.nextPosition4 = "goOutside";
     }
     public void north2Sword() {
@@ -347,10 +333,10 @@ public class Storyline {
     public void trollEncounter(){
         creatue = new MonsterTroll();
 
-        uIscreen.mainTextArea.setText("As you walk further into the swamp. You hear a roar \nYou encounter " + creatue.name);
-        // Don't the characters longer the 21 characters or they go outside the box.
+        uIscreen.mainTextArea.setText("You go forward towards the scary noise and see a giant troll\nYou encouter " + creatue.name + "\nThe Troll looks very strong and has <" + creatue.health + "> health points");
+
         uIscreen.choice1.setText("Battle");
-        uIscreen.choice2.setText("Flee");
+        uIscreen.choice2.setText("Leave to get stronger");
         uIscreen.choice3.setText("");
         uIscreen.choice4.setText("");
 
@@ -409,6 +395,7 @@ public class Storyline {
 
     public void playerAttack(){
         int playerDamage;
+        uIscreen.playSound(1);
 
         if (mightPotion == 2){
             playerDamage = new java.util.Random().nextInt(player.equippedWeapon.damage)+8;
@@ -477,7 +464,7 @@ public class Storyline {
     }
     public void monsterSlain(){
         if(bush == 1){
-            bushSlain();
+            bushSlained();
         }
         if(bandit == 1){
             banditSlain();
@@ -490,9 +477,9 @@ public class Storyline {
         }
 
     }
-    public void bushSlain(){
+    public void bushSlained(){
         uIscreen.mainTextArea.setText("You defeated the "+ creatue.name + " the monster was a simple bush" + "\nWhat do you do?");
-
+        // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Punch the bush");
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
@@ -539,7 +526,7 @@ public class Storyline {
 
     }
     public void peasantSlain(){
-        uIscreen.mainTextArea.setText("You kill Greg. Oh the Humanity!\nAs you stand over Gregs body. You pick up a tubed hand crossbow");
+        uIscreen.mainTextArea.setText("You kill Gred. Oh the Humanity!\nAs you stand over Gregs body. You pick up a tubed hand crossbow");
         player.equippedWeapon = new WeaponGun();
         uIscreen.weaponNameLabel.setText(player.equippedWeapon.name);
         peasant = 3;
@@ -561,7 +548,7 @@ public class Storyline {
         uIscreen.mainTextArea.setText("You are dead\n\nGAME OVER");
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Play Again");
-        uIscreen.choice2.setText("a");
+        uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
         uIscreen.choice4.setText("");
 
@@ -574,20 +561,6 @@ public class Storyline {
 
     public void gameoverEast(){
         uIscreen.mainTextArea.setText("As you walk into the alleyway on the right and see a protest for equal rights movement. Your adventure stops here as your carrier of equal right starts instead.\n\nGAME OVER");
-
-        uIscreen.choice1.setText("Play Again");
-        uIscreen.choice2.setText("");
-        uIscreen.choice3.setText("");
-        uIscreen.choice4.setText("");
-
-        game.nextPosition1 = "newGame";
-        game.nextPosition2 = "";
-        game.nextPosition3 = "";
-        game.nextPosition4 = "";
-
-    }
-    public void gameoverNorth(){
-        uIscreen.mainTextArea.setText("As you walk off the path. You become so lost in the wilderness, that you become a monkey instead.\n\nGAME OVER");
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Play Again");
         uIscreen.choice2.setText("");
@@ -598,6 +571,7 @@ public class Storyline {
         game.nextPosition2 = "";
         game.nextPosition3 = "";
         game.nextPosition4 = "";
+
     }
 
 
@@ -724,17 +698,17 @@ public class Storyline {
     }
 
     public void south1Swamp(){
-        uIscreen.mainTextArea.setText("");
+        uIscreen.mainTextArea.setText("You go south to the swamp. Your hear roars and large foot steps.\n\nWhat do You do?");
         // Dont the characters longer the 21 characters or they go outside the box.
-        uIscreen.choice1.setText("");
+        uIscreen.choice1.setText("Go toward the sound");
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
-        uIscreen.choice4.setText("");
+        uIscreen.choice4.setText("Go back");
 
-        game.nextPosition1 = "";
+        game.nextPosition1 = "trollEncounter";
         game.nextPosition2 = "";
         game.nextPosition3 = "";
-        game.nextPosition4 = "";
+        game.nextPosition4 = "goOutside";
     }
 
     public void newGame(){

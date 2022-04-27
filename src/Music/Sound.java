@@ -16,7 +16,7 @@ public class Sound {
      */
     public Sound(){
         soundURL[0] = getClass().getResource("/Resource/runescapeTheme.wav");
-        soundURL[1] = getClass().getResource("/Resource/solidSnakeSound.wav");
+        soundURL[1] = getClass().getResource("/Resource/swordSlashSoundEffect.wav");
     }
 
     /**
