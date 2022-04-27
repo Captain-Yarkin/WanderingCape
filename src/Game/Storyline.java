@@ -25,7 +25,7 @@ public class Storyline {
     Player player = new Player();
     CreatureMold creatue;
 
-    //KILL LIST
+    //KILL/INFO LIST
     int bush,troll,bandit,peasant, infoBandit, mightPotion;
 
 
@@ -92,6 +92,11 @@ public class Storyline {
             case "banditEncounter" -> banditEncounter();
             case "gameoverEast" -> gameoverEast();
             case "mightPotion" -> mightPotion();
+            case "west2Smith" -> west2Smith();
+            case "west3Smith" -> west3Smith();
+            case "west4Smith" -> west4Smith();
+            case "west5Smith" -> west5Smith();
+            case "west6Reward" -> west6Reward();
 
 
         }
@@ -233,15 +238,26 @@ public class Storyline {
         game.nextPosition3 = "gameover2";
         game.nextPosition4 = "goOutside";
     }
-    public void north2Sword(){
-        uIscreen.mainTextArea.setText("As you walk, following the road. You spot a sword stuck in a rock. \n What do you do?");
+    public void north2Sword() {
+        if (player.equippedWeapon.name.equals("Longsword")) {
+            uIscreen.mainTextArea.setText("As you walk, following the road. You spot a hole in the rock where you pulled out the sword. \nWhat do you do?");
+        } else {
+            uIscreen.mainTextArea.setText("As you walk, following the road. You spot a sword stuck in a rock. \nWhat do you do?");
+        }
         // Dont the characters longer the 21 characters or they go outside the box.
-        uIscreen.choice1.setText("Pull out the sword");
+        if (player.equippedWeapon.name.equals("Longsword")) {
+            uIscreen.choice1.setText("");
+        } else {
+            uIscreen.choice1.setText("Pull out the sword");
+        }
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
         uIscreen.choice4.setText("Go back");
-
+    if (player.equippedWeapon.name.equals("Longsword")){
+        game.nextPosition1 = "";
+    }else {
         game.nextPosition1 = "swordEquipped";
+    }
         game.nextPosition2 = "";
         game.nextPosition3 = "";
         game.nextPosition4 = "north1Forest";
@@ -334,10 +350,10 @@ public class Storyline {
     }
 
     public void east1Slums(){
-        uIscreen.mainTextArea.setText("You walk east to the slums.\n You hear noises from an alleyway to you left.\nTo the right you hear sounds of people screaming");
+        uIscreen.mainTextArea.setText("You walk east to the slums.\nYou hear noises from an alleyway to you left.\nTo the right you hear sounds of people screaming");
 
-        uIscreen.choice1.setText("Check out the alleyway on the left");
-        uIscreen.choice2.setText("Check out the alleyway on the right");
+        uIscreen.choice1.setText("Go left");
+        uIscreen.choice2.setText("Go right");
         uIscreen.choice3.setText("");
         uIscreen.choice4.setText("Go back");
 
@@ -350,7 +366,7 @@ public class Storyline {
 
     public void battle(){
         uIscreen.mainTextArea.setText(creatue.name + " has <" + creatue.health + "> health points\n\nWhat do you do!");
-        // Dont the characters longer the 21 characters or they go outside the box.
+        // Don't the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Attack with Weapons");
         if (peasant == 1){
             uIscreen.choice2.setText("");
@@ -560,18 +576,127 @@ public class Storyline {
 
 
     public void west1Smith(){
-        uIscreen.mainTextArea.setText("You walk west and enter the blacksmith.\nA dwarf greets you");
+        if (mightPotion != 3){
+            uIscreen.mainTextArea.setText("You walk west and enter the blacksmith.\nA dwarf greets you");
+        } else {
+            uIscreen.mainTextArea.setText("You walk west and enter the blacksmith.\nA dwarf greets you and thanks you with a big smile");
+        }
+
         // Dont the characters longer the 21 characters or they go outside the box.
-        uIscreen.choice1.setText("Talk to the Smith");
+        if (mightPotion != 3) {
+            uIscreen.choice1.setText("Talk to the Dwarf");
+        } else {
+            uIscreen.choice1.setText("");
+        }
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
         uIscreen.choice4.setText("Go outside");
 
-        game.nextPosition1 = "west2Smith";
+        if(mightPotion != 3) {
+            game.nextPosition1 = "west2Smith";
+        } else {
+            game.nextPosition1 = "";
+        }
         game.nextPosition2 = "";
         game.nextPosition3 = "";
         game.nextPosition4 = "goOutside";
     }
+
+    public void west2Smith(){
+        uIscreen.mainTextArea.setText("You approach the dwarf. He looks at you, waiting. \n\nWhat do you do");
+        // Dont the characters longer the 21 characters or they go outside the box.
+        uIscreen.choice1.setText("Ask about Bandit");
+        uIscreen.choice2.setText("What do you do?");
+        if(mightPotion == 1) {
+            uIscreen.choice3.setText("Here is your potion");
+        } else {
+            uIscreen.choice3.setText("Can I get an armor?");
+        }
+        uIscreen.choice4.setText("Go outside");
+
+        game.nextPosition1 = "west3Smith";
+        game.nextPosition2 = "west4Smith";
+        if (mightPotion == 1) {
+            game.nextPosition3 = "west6Reward";
+        } else {
+            game.nextPosition3 = "west5Smith";
+        }
+        game.nextPosition4 = "goOutside";
+    }
+    public void west3Smith(){
+        infoBandit = 1;
+        uIscreen.mainTextArea.setText("Dwarf Blacksmith: Aye there is a bandit that has stolen my Might Potion, I can't work without it. If you retrieve the potion for me I will give you my best armor.\nI have heard that the bandit is to the east on the left alleyway. Dont go to into the right alleyway! trust me");
+
+        uIscreen.choice1.setText("Ask about Bandit");
+        uIscreen.choice2.setText("What do you do?");
+        if(mightPotion == 1) {
+            uIscreen.choice3.setText("Here is your potion");
+        } else {
+            uIscreen.choice3.setText("Can I get an armor?");
+        }
+        uIscreen.choice4.setText("Go outside");
+
+        game.nextPosition1 = "west3Smith";
+        game.nextPosition2 = "west4Smith";
+        if (mightPotion == 1) {
+            game.nextPosition3 = "west6Reward";
+        } else {
+            game.nextPosition3 = "west5Smith";
+        }
+        game.nextPosition4 = "goOutside";
+
+    }
+    public void west4Smith(){
+        uIscreen.mainTextArea.setText("Dwarf Blacksmith: I create equipment for adventures and farmers.");
+
+        uIscreen.choice1.setText("Ask about Bandit");
+        uIscreen.choice2.setText("What do you do?");
+        if(mightPotion == 1) {
+            uIscreen.choice3.setText("Here is your potion");
+        } else {
+            uIscreen.choice3.setText("Can I get an armor?");
+        }
+        uIscreen.choice4.setText("Go outside");
+
+        game.nextPosition1 = "west3Smith";
+        game.nextPosition2 = "west4Smith";
+        if (mightPotion == 1) {
+            game.nextPosition3 = "west6Reward";
+        } else {
+            game.nextPosition3 = "west5Smith";
+        }
+        game.nextPosition4 = "goOutside";
+
+    }
+    public void west5Smith() {
+        uIscreen.mainTextArea.setText("Dwarf Blacksmith: Only if you get back my Might Potion. Can't make anything without it...\n\n*The dwarf sigh...*\nWhat do you do?");
+
+        uIscreen.choice1.setText("Ask about Bandit");
+        uIscreen.choice2.setText("What do you do?");
+        if(mightPotion == 1) {
+            uIscreen.choice3.setText("Here is your potion");
+        } else {
+            uIscreen.choice3.setText("Can I get an armor?");
+        }
+        uIscreen.choice4.setText("Go outside");
+
+        game.nextPosition1 = "west3Smith";
+        game.nextPosition2 = "west4Smith";
+        if (mightPotion == 1) {
+            game.nextPosition3 = "west6Reward";
+        } else {
+            game.nextPosition3 = "west5Smith";
+        }
+        game.nextPosition4 = "goOutside";
+    }
+    public void west6Reward(){
+        uIscreen.mainTextArea.setText("Dwarf Blacksmith: Thank you very much. Here is my best armor \nAs you equip the armor you feel safer");
+        mightPotion = 3;
+        player.health = player.health + 50;
+        uIscreen.healthNumberLabel.setText("" + player.health);
+
+    }
+
     public void south1Swamp(){
         uIscreen.mainTextArea.setText("");
         // Dont the characters longer the 21 characters or they go outside the box.

@@ -9,9 +9,9 @@ You wake up in a tavern after a heavy night of drinking. You don't remember anyt
 
 ## Instruction
 
-To play the game you need to 
+To play the game you need to have
 1. Java pre-installed
-2. Have a IDE 
+2. IDE to launch the game
 
 To launch the game follow this step-by-step
 1. Fork the repository to your local device.
