@@ -143,7 +143,7 @@ public class UIscreen {
             //Weapon Label name | "Current bug this label is gray and not white"
         weaponLabel = new JLabel("Weapon: ");
         weaponLabel.setFont(noramlFont);
-        healthLabel.setForeground(foregroundColor);
+        weaponLabel.setForeground(foregroundColor);
         playerPanel.add(weaponLabel);
             //Weapon Label name type
         weaponNameLabel = new JLabel();
