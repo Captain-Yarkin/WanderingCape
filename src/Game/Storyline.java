@@ -83,7 +83,8 @@ public class Storyline {
             case "swordEquipped" -> swordEquipped();
             case "north2NoSword" -> north2NoSword();
             case "gameoverDeath" -> gameoverDeath();
-            case "bushSlained" -> bushSlained();
+            case "gameoverNorth" -> gameoverNorth();
+            case "bushSlained" -> bushSlain();
             case "playerAttack" -> playerAttack();
             case "monsterAttack" -> monsterAttack();
             case "battle" -> battle();
@@ -226,7 +227,7 @@ public class Storyline {
     }
 
     public void north1Forest(){
-        uIscreen.mainTextArea.setText("As you walk north you reach a forest. The road is long.\n Your hear sound from a bush near you \nWhat will you do?");
+        uIscreen.mainTextArea.setText("As you walk north you reach a forest. The road is long.\nYour hear sound from a bush near you \nWhat will you do?");
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Follow the road");
         uIscreen.choice2.setText("Search the bush");
@@ -235,7 +236,7 @@ public class Storyline {
 
         game.nextPosition1 = "north2Sword";
         game.nextPosition2 = "bushEncounter";
-        game.nextPosition3 = "gameover2";
+        game.nextPosition3 = "gameoverNorth";
         game.nextPosition4 = "goOutside";
     }
     public void north2Sword() {
@@ -345,6 +346,18 @@ public class Storyline {
     }
     public void trollEncounter(){
         creatue = new MonsterTroll();
+
+        uIscreen.mainTextArea.setText("As you walk further into the swamp. You hear a roar \nYou encounter " + creatue.name);
+        // Don't the characters longer the 21 characters or they go outside the box.
+        uIscreen.choice1.setText("Battle");
+        uIscreen.choice2.setText("Flee");
+        uIscreen.choice3.setText("");
+        uIscreen.choice4.setText("");
+
+        game.nextPosition1 = "battle";
+        game.nextPosition2 = "south1Swamp";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
 
 
     }
@@ -464,7 +477,7 @@ public class Storyline {
     }
     public void monsterSlain(){
         if(bush == 1){
-            bushSlained();
+            bushSlain();
         }
         if(bandit == 1){
             banditSlain();
@@ -477,9 +490,9 @@ public class Storyline {
         }
 
     }
-    public void bushSlained(){
+    public void bushSlain(){
         uIscreen.mainTextArea.setText("You defeated the "+ creatue.name + " the monster was a simple bush" + "\nWhat do you do?");
-        // Dont the characters longer the 21 characters or they go outside the box.
+
         uIscreen.choice1.setText("Punch the bush");
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
@@ -526,7 +539,7 @@ public class Storyline {
 
     }
     public void peasantSlain(){
-        uIscreen.mainTextArea.setText("You kill Gred. Oh the Humanity!\nAs you stand over Gregs body. You pick up a tubed hand crossbow");
+        uIscreen.mainTextArea.setText("You kill Greg. Oh the Humanity!\nAs you stand over Gregs body. You pick up a tubed hand crossbow");
         player.equippedWeapon = new WeaponGun();
         uIscreen.weaponNameLabel.setText(player.equippedWeapon.name);
         peasant = 3;
@@ -561,7 +574,7 @@ public class Storyline {
 
     public void gameoverEast(){
         uIscreen.mainTextArea.setText("As you walk into the alleyway on the right and see a protest for equal rights movement. Your adventure stops here as your carrier of equal right starts instead.\n\nGAME OVER");
-        // Dont the characters longer the 21 characters or they go outside the box.
+
         uIscreen.choice1.setText("Play Again");
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
@@ -572,6 +585,19 @@ public class Storyline {
         game.nextPosition3 = "";
         game.nextPosition4 = "";
 
+    }
+    public void gameoverNorth(){
+        uIscreen.mainTextArea.setText("As you walk off the path. You become so lost in the wilderness, that you become a monkey instead.\n\nGAME OVER");
+        // Dont the characters longer the 21 characters or they go outside the box.
+        uIscreen.choice1.setText("Play Again");
+        uIscreen.choice2.setText("");
+        uIscreen.choice3.setText("");
+        uIscreen.choice4.setText("");
+
+        game.nextPosition1 = "newGame";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
     }
 
 
