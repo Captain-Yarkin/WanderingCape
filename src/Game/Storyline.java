@@ -80,7 +80,6 @@ public class Storyline {
             case "south1Swamp" -> south1Swamp();
             case "north2Sword" -> north2Sword();
             case "bushEncounter" -> bushEncounter();
-            case "gameover2" -> gameover2();
             case "swordEquipped" -> swordEquipped();
             case "north2NoSword" -> north2NoSword();
             case "gameoverDeath" -> gameoverDeath();
@@ -117,13 +116,13 @@ public class Storyline {
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Talk to the bartender");
         uIscreen.choice2.setText("Wake the peasant");
-        uIscreen.choice3.setText("Go outside");
-        uIscreen.choice4.setText("Go back to sleep");
+        uIscreen.choice3.setText("Go back to sleep");
+        uIscreen.choice4.setText("Go outside");
 
         game.nextPosition1 = "talkToBartender";
         game.nextPosition2 = "wakePeasant";
-        game.nextPosition3 = "goOutside";
-        game.nextPosition4 = "backToSleep";
+        game.nextPosition3 = "backToSleep";
+        game.nextPosition4 = "goOutside";
     }
 
     public void talkToBartender() {
@@ -533,7 +532,7 @@ public class Storyline {
         uIscreen.mainTextArea.setText("You are dead\n\nGAME OVER");
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Play Again");
-        uIscreen.choice2.setText("");
+        uIscreen.choice2.setText("a");
         uIscreen.choice3.setText("");
         uIscreen.choice4.setText("");
 
@@ -559,22 +558,19 @@ public class Storyline {
 
     }
 
-    public void gameover2(){
-
-    }
 
     public void west1Smith(){
-        uIscreen.mainTextArea.setText("");
+        uIscreen.mainTextArea.setText("You walk west and enter the blacksmith.\nA dwarf greets you");
         // Dont the characters longer the 21 characters or they go outside the box.
-        uIscreen.choice1.setText("");
+        uIscreen.choice1.setText("Talk to the Smith");
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
-        uIscreen.choice4.setText("");
+        uIscreen.choice4.setText("Go outside");
 
-        game.nextPosition1 = "";
+        game.nextPosition1 = "west2Smith";
         game.nextPosition2 = "";
         game.nextPosition3 = "";
-        game.nextPosition4 = "";
+        game.nextPosition4 = "goOutside";
     }
     public void south1Swamp(){
         uIscreen.mainTextArea.setText("");
