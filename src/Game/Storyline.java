@@ -99,6 +99,7 @@ public class Storyline {
             case "west6Reward" -> west6Reward();
             case "trollEncounter" -> trollEncounter();
             case "gameoverNorth" -> gameoverNorth();
+            case "win" -> win();
 
 
         }
@@ -384,7 +385,7 @@ public class Storyline {
             game.nextPosition2 = "east1Slums";
         }
         if (troll == 1){
-            game.nextPosition2 = "";
+            game.nextPosition2 = "south1Swamp";
         }
         if (bush == 1){
             game.nextPosition2 = "north1Forest";
@@ -434,6 +435,9 @@ public class Storyline {
         if (creature.name.equals("Greg") && creature.health<1){
             peasant = 2;
         }
+        if (creature.name.equals("Troll")&& creature.health<1){
+            troll = 1;
+        }
     }
 
     public void monsterAttack(){
@@ -471,7 +475,7 @@ public class Storyline {
             banditSlain();
         }
         if(troll == 1){
-            trollSlain();
+            win();
         }
         if(peasant == 2){
             peasantSlain();
@@ -521,9 +525,6 @@ public class Storyline {
 
         game.nextPosition1 = "east1Slums";
 
-
-    }
-    public void trollSlain(){
 
     }
     public void peasantSlain(){
@@ -682,6 +683,7 @@ public class Storyline {
         game.nextPosition4 = "goOutside";
 
     }
+
     public void west5Smith() {
         uIscreen.mainTextArea.setText("Dwarf Blacksmith: Only if you get back my Might Potion. Can't make anything without it...\n\n*The dwarf sigh...*\nWhat do you do?");
 
@@ -723,6 +725,20 @@ public class Storyline {
         game.nextPosition2 = "";
         game.nextPosition3 = "";
         game.nextPosition4 = "goOutside";
+    }
+
+    public void win(){
+        uIscreen.mainTextArea.setText("As you slay the troll, you cut off its head going back to the village.\nThe Elder greets you thanking you forgiving all you school and drinking debts");
+
+        uIscreen.choice1.setText("Play Again");
+        uIscreen.choice2.setText("");
+        uIscreen.choice3.setText("");
+        uIscreen.choice4.setText("");
+
+        game.nextPosition1 = "newGame";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
     }
 
     public void newGame(){
