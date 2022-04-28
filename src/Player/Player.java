@@ -24,4 +24,10 @@ public class Player implements IPlayer {
     public void setHealth(int health) {
         this.health = health;
     }
+
+    public int dealDamage() {
+        int playerDamage;
+        playerDamage = new java.util.Random().nextInt(getEquippedWeapon().damage);
+        return playerDamage;
+    }
 }

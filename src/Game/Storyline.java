@@ -16,7 +16,7 @@ import GUI.UIscreen;
 import Player.Player;
 
 /**
- * This is the Storyline where the games takes it place in
+ * This is the Storyline where the games follow the main story
  */
 public class Storyline {
     Game game;
@@ -36,7 +36,7 @@ public class Storyline {
     }
 
     /**
-     * This is what the players starts with in the game.
+     * This is what the players start with in the game.
      */
     public void defaultStatus(){
         //PLAYER HEALTH
@@ -83,12 +83,12 @@ public class Storyline {
             case "swordEquipped" -> swordEquipped();
             case "north2NoSword" -> north2NoSword();
             case "gameoverDeath" -> gameoverDeath();
-            case "bushSlained" -> bushSlained();
+            case "bushSlain" -> bushSlain();
             case "playerAttack" -> playerAttack();
             case "monsterAttack" -> monsterAttack();
             case "battle" -> battle();
             case "newGame" -> newGame();
-            case "monsterSlained" -> monsterSlain();
+            case "monsterSlain" -> monsterSlain();
             case "banditEncounter" -> banditEncounter();
             case "gameoverEast" -> gameoverEast();
             case "mightPotion" -> mightPotion();
@@ -107,7 +107,7 @@ public class Storyline {
 
     public void tavern(){
         uIscreen.mainTextArea.setText("You awaken next to a peasant after a heavy night drinking in the tavern not remembering anything from last night. A bartender is cleaning some cups behind the bar. \nWhat do you do?");
-        // Dont the characters longer the 21 characters or they go outside the box.
+
         uIscreen.choice1.setText("Talk to the bartender");
         uIscreen.choice2.setText("Wake the peasant");
         uIscreen.choice3.setText("Go back to sleep");
@@ -125,7 +125,7 @@ public class Storyline {
         } else {
             uIscreen.mainTextArea.setText("As you approach the bartender. He look horrified after you killed Greg, but act like nothing to not provoke you to kill him. \nHuman Bartender: Hello friend... long night...? \nWhat do you ask the bartender?");
         }
-        // Don't the characters longer the 21 characters or they go outside the box.
+        // Don't the characters longer the 21 characters, or they go outside the box.
         uIscreen.choice1.setText("Ask about Rumours");
         uIscreen.choice2.setText("Last night?");
         uIscreen.choice3.setText("Who is that peasant?");
@@ -139,7 +139,7 @@ public class Storyline {
     }
     public void talkToBartender2(){
         uIscreen.mainTextArea.setText("Human Bartender: *Laughs* man you dont remember anything. \nDisregards your question.");
-        // Dont the characters longer the 21 characters or they go outside the box.
+
         uIscreen.choice1.setText("Ask about Rumours");
         uIscreen.choice2.setText("Last night?");
         uIscreen.choice3.setText("Who is that peasant?");
@@ -153,7 +153,7 @@ public class Storyline {
     }
     public void talkToBartender3() {
         uIscreen.mainTextArea.setText("Human Bartender: Rumours you ask? Aye I got some for you.\nTo the east of the village a bandit has stolen a might potion.\nTo the north there are rumours of a sword.\nTo the west there is a smith that can forge you some new armor\nTo the south there is a dangerous Troll killing our villagers\nThe person who kills the troll will get a reward from the Elder");
-        // Dont the characters longer the 21 characters or they go outside the box.
+
         uIscreen.choice1.setText("Thank you! I will go");
         uIscreen.choice2.setText("Last night?");
         if (peasant == 3) {
@@ -176,7 +176,7 @@ public class Storyline {
 
 
         uIscreen.mainTextArea.setText("As you reach to wake up the peasant. He jolts up raising his fists attacking you. \n\nYou encounter: " + creature.name);
-        // Dont the characters longer the 21 characters or they go outside the box.
+
         uIscreen.choice1.setText("Battle");
         uIscreen.choice2.setText("*To drunk to Flee*");
         uIscreen.choice3.setText("*To drunk to Flee*");
@@ -189,7 +189,7 @@ public class Storyline {
     }
     public void goOutside(){
         uIscreen.mainTextArea.setText("You feel the fresh air hit your face. Adventure awaits \nWhere will you travel");
-        // Dont the characters longer the 21 characters or they go outside the box.
+
         uIscreen.choice1.setText("north");
         uIscreen.choice2.setText("east");
         uIscreen.choice3.setText("west");
@@ -202,7 +202,7 @@ public class Storyline {
     }
     public void backToSleep(){
         uIscreen.mainTextArea.setText("As you fall a sleep for the final time. It seems like you dont wake up.\nGAME OVER");
-        // Dont the characters longer the 21 characters or they go outside the box.
+
         uIscreen.choice1.setText("Play Again");
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
@@ -216,7 +216,7 @@ public class Storyline {
 
     public void north1Forest(){
         uIscreen.mainTextArea.setText("As you walk north you reach a forest. The road is long.\n Your hear sound from a bush near you \nWhat will you do?");
-        // Dont the characters longer the 21 characters or they go outside the box.
+
         uIscreen.choice1.setText("Follow the road");
         uIscreen.choice2.setText("Search the bush");
         uIscreen.choice3.setText("Go off the road");
@@ -233,7 +233,7 @@ public class Storyline {
         } else {
             uIscreen.mainTextArea.setText("As you walk, following the road. You spot a sword stuck in a rock. \nWhat do you do?");
         }
-        // Dont the characters longer the 21 characters or they go outside the box.
+
         if (player.getEquippedWeapon().name.equals("Longsword")) {
             uIscreen.choice1.setText("");
         } else {
@@ -270,7 +270,7 @@ public class Storyline {
 
     public void north2NoSword(){
         uIscreen.mainTextArea.setText("As you stand back. You look at the rock you pulled the sword from.\nWhat do you do?");
-        // Dont the characters longer the 21 characters or they go outside the box.
+
         uIscreen.choice1.setText("");
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
@@ -367,7 +367,7 @@ public class Storyline {
 
     public void battle(){
         uIscreen.mainTextArea.setText(creature.name + " has <" + creature.health + "> health points\n\nWhat do you do!");
-        // Don't the characters longer the 21 characters or they go outside the box.
+
         uIscreen.choice1.setText("Attack");
         if (peasant == 1){
             uIscreen.choice2.setText("");
@@ -400,9 +400,9 @@ public class Storyline {
         uIscreen.playSound(1);
 
         if (mightPotion == 2){
-            playerDamage = new java.util.Random().nextInt(player.getEquippedWeapon().damage)+20;
+            playerDamage = player.dealDamage()+20;
         } else {
-            playerDamage = new java.util.Random().nextInt(player.getEquippedWeapon().damage);
+            playerDamage = player.dealDamage();
         }
 
 
@@ -421,7 +421,7 @@ public class Storyline {
             game.nextPosition4 = "";
         }
         else if (creature.health<1){
-            game.nextPosition1 = "monsterSlained";
+            game.nextPosition1 = "monsterSlain";
             game.nextPosition2 = "";
             game.nextPosition3 = "";
             game.nextPosition4 = "";
@@ -469,7 +469,7 @@ public class Storyline {
     }
     public void monsterSlain(){
         if(bush == 1){
-            bushSlained();
+            bushSlain();
         }
         if(bandit == 1){
             banditSlain();
@@ -482,7 +482,7 @@ public class Storyline {
         }
 
     }
-    public void bushSlained(){
+    public void bushSlain(){
         uIscreen.mainTextArea.setText("You defeated the "+ creature.name + " the monster was a simple bush" + "\nWhat do you do?");
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Punch the bush");

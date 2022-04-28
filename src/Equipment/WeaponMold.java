@@ -1,7 +1,7 @@
 package Equipment;
 
 /**
- * Every Weapon created extends this class, with its name and its damage.
+ * Every Weapon created classes extend this class, with its name and its damage.
  */
 public class WeaponMold {
 

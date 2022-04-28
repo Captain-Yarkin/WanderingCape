@@ -6,6 +6,9 @@ import Music.Sound;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This is where everything that is shown to the user is created from title screen to choice buttons
+ */
 public class UIscreen {
 
     JFrame gameWindow;
