@@ -8,6 +8,6 @@ public class NPCPeasant extends CreatureMold {
         name = "Greg";
         health = 30;
         damage = 2;
-        attackMessage = "The drunk swings his fist dealing:";
+        attackMessage = " the drunk swings his fist dealing:";
     }
 }

@@ -5,6 +5,6 @@ import Equipment.WeaponMold;
 public class WeaponDagger extends WeaponMold {
     public WeaponDagger(){
         name = "Dagger";
-        damage = 1;
+        damage = 3;
     }
 }

@@ -40,12 +40,12 @@ public class Storyline {
      */
     public void defaultStatus(){
         //PLAYER HEALTH
-        player.health = 10;
-        uIscreen.healthNumberLabel.setText("" + player.health);
+        player.setHealth(10);
+        uIscreen.healthNumberLabel.setText("" + player.getHealth());
 
         //PLAYER EQUIPPED WEAPON
-        player.equippedWeapon = new WeaponDagger();
-        uIscreen.weaponNameLabel.setText(player.equippedWeapon.name);
+        player.setEquippedWeapon(new WeaponDagger());
+        uIscreen.weaponNameLabel.setText(player.getEquippedWeapon().name);
 
         //INFO
         infoBandit = 0;
@@ -228,13 +228,13 @@ public class Storyline {
         game.nextPosition4 = "goOutside";
     }
     public void north2Sword() {
-        if (player.equippedWeapon.name.equals("Longsword")) {
+        if (player.getEquippedWeapon().name.equals("Longsword")) {
             uIscreen.mainTextArea.setText("As you walk, following the road. You spot a hole in the rock where you pulled out the sword. \nWhat do you do?");
         } else {
             uIscreen.mainTextArea.setText("As you walk, following the road. You spot a sword stuck in a rock. \nWhat do you do?");
         }
         // Dont the characters longer the 21 characters or they go outside the box.
-        if (player.equippedWeapon.name.equals("Longsword")) {
+        if (player.getEquippedWeapon().name.equals("Longsword")) {
             uIscreen.choice1.setText("");
         } else {
             uIscreen.choice1.setText("Pull out the sword");
@@ -242,7 +242,7 @@ public class Storyline {
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
         uIscreen.choice4.setText("Go back");
-    if (player.equippedWeapon.name.equals("Longsword")){
+    if (player.getEquippedWeapon().name.equals("Longsword")){
         game.nextPosition1 = "";
     }else {
         game.nextPosition1 = "swordEquipped";
@@ -254,8 +254,8 @@ public class Storyline {
     public void swordEquipped(){
         uIscreen.mainTextArea.setText("As you grab the hilt of the sword. With all your might you pull it out. \n Your aquire a longsword");
 
-        player.equippedWeapon = new WeaponLongsword();
-        uIscreen.weaponNameLabel.setText(player.equippedWeapon.name);
+        player.setEquippedWeapon(new WeaponLongsword());
+        uIscreen.weaponNameLabel.setText(player.getEquippedWeapon().name);
 
         uIscreen.choice1.setText("");
         uIscreen.choice2.setText("");
@@ -309,8 +309,8 @@ public class Storyline {
             uIscreen.mainTextArea.setText("You are aware of the bandits tricks and approach carefully\nYou see the bandit ready to pounce at a moments notice.");
         } else {
             uIscreen.mainTextArea.setText("As you walk into the alleyway on the left.\n<AMBUSH> \nYou get stabbed from behind by the bandit. \nYou take: 3 damage");
-            player.health = player.health - 3;
-            uIscreen.healthNumberLabel.setText("" + player.health);
+            player.setHealth(player.getHealth() - 3);
+            uIscreen.healthNumberLabel.setText("" + player.getHealth());
             infoBandit = 1;
         }
         if(bandit != 3) {
@@ -400,9 +400,9 @@ public class Storyline {
         uIscreen.playSound(1);
 
         if (mightPotion == 2){
-            playerDamage = new java.util.Random().nextInt(player.equippedWeapon.damage)+8;
+            playerDamage = new java.util.Random().nextInt(player.getEquippedWeapon().damage)+20;
         } else {
-            playerDamage = new java.util.Random().nextInt(player.equippedWeapon.damage)+1;
+            playerDamage = new java.util.Random().nextInt(player.getEquippedWeapon().damage);
         }
 
 
@@ -443,22 +443,22 @@ public class Storyline {
     public void monsterAttack(){
         int monsterDamage = new java.util.Random().nextInt(creature.damage);
 
-        player.health = player.health - monsterDamage;
-        uIscreen.healthNumberLabel.setText("" + player.health);
-        uIscreen.mainTextArea.setText(creature.name + " attacks you dealing "+ monsterDamage);
+        player.setHealth(player.getHealth() - monsterDamage);
+        uIscreen.healthNumberLabel.setText("" + player.getHealth());
+        uIscreen.mainTextArea.setText(creature.name + creature.attackMessage + monsterDamage);
 
         uIscreen.choice1.setText("Continue");
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
         uIscreen.choice4.setText("");
 
-        if(player.health>0){
+        if(player.getHealth() >0){
             game.nextPosition1 = "battle";
             game.nextPosition2 = "";
             game.nextPosition3 = "";
             game.nextPosition4 = "";
         }
-        else if (player.health<1){
+        else if (player.getHealth() <1){
             game.nextPosition1 = "gameoverDeath";
             game.nextPosition2 = "";
             game.nextPosition3 = "";
@@ -515,8 +515,8 @@ public class Storyline {
     public void mightPotion(){
         mightPotion = 2;
         uIscreen.mainTextArea.setText("You drink the Might potion and feel like you are stronger");
-        player.health = 20;
-        uIscreen.healthNumberLabel.setText("" + player.health);
+        player.setHealth(20);
+        uIscreen.healthNumberLabel.setText("" + player.getHealth());
 
         uIscreen.choice1.setText("Continue");
         uIscreen.choice2.setText("");
@@ -529,8 +529,8 @@ public class Storyline {
     }
     public void peasantSlain(){
         uIscreen.mainTextArea.setText("You kill Greg. Oh the Humanity!\nAs you stand over Gregs body. You pick up a tubed hand crossbow");
-        player.equippedWeapon = new WeaponGun();
-        uIscreen.weaponNameLabel.setText(player.equippedWeapon.name);
+        player.setEquippedWeapon(new WeaponGun());
+        uIscreen.weaponNameLabel.setText(player.getEquippedWeapon().name);
         peasant = 3;
 
         uIscreen.choice1.setText("Talk to the Bartender");
@@ -708,8 +708,8 @@ public class Storyline {
     public void west6Reward(){
         uIscreen.mainTextArea.setText("Dwarf Blacksmith: Thank you very much. Here is my best armor \nAs you equip the armor you feel safer");
         mightPotion = 3;
-        player.health = player.health + 75;
-        uIscreen.healthNumberLabel.setText("" + player.health);
+        player.setHealth(player.getHealth() + 90);
+        uIscreen.healthNumberLabel.setText("" + player.getHealth());
 
     }
 
@@ -728,7 +728,7 @@ public class Storyline {
     }
 
     public void win(){
-        uIscreen.mainTextArea.setText("As you slay the troll, you cut off its head going back to the village.\nThe Elder greets you thanking you forgiving all you school and drinking debts");
+        uIscreen.mainTextArea.setText("As you slay the troll, you cut off its head going back to the village.\nThe Elder greets your thanking you forgiving all you school and drinking debts\n\nYOU WIN");
 
         uIscreen.choice1.setText("Play Again");
         uIscreen.choice2.setText("");

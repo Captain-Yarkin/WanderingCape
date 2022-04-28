@@ -5,6 +5,6 @@ import Equipment.WeaponMold;
 public class WeaponLongsword extends WeaponMold {
     public WeaponLongsword(){
         name = "Longsword";
-        damage = 15;
+        damage = 17;
     }
 }
