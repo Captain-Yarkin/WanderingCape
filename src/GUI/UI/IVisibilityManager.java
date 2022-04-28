@@ -5,6 +5,6 @@ package GUI.UI;
  */
 public interface IVisibilityManager {
 
-    public void showTitleScreen();
-    public void titleScreenToChoiceScreen();
+    void showTitleScreen();
+    void titleScreenToChoiceScreen();
 }

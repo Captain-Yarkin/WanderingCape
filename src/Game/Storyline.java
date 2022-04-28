@@ -741,6 +741,9 @@ public class Storyline {
         game.nextPosition4 = "";
     }
 
+    /**
+     * gives the player defaultStatus and shows the title screen when called
+     */
     public void newGame(){
         defaultStatus();
         visibilityManager.showTitleScreen();

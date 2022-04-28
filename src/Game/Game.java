@@ -18,12 +18,22 @@ public class Game {
     public Storyline storyline = new Storyline(this, uIscreen, visibilityManager);
     public String nextPosition1, nextPosition2, nextPosition3, nextPosition4;
 
+    /**
+     * main function
+     * @param args
+     */
     public static void main(String[] args) {
         new Game();
     }
+
+    /**
+     * calls upon the UI.
+     * call upon the newGame
+     * playes the first song in from the uIscreen -> sound -> resources
+     */
     public Game() {
         uIscreen.createScreen(choiceHandler);
-        storyline.defaultStatus();
+        //storyline.defaultStatus();
         storyline.newGame();
         //visibilityManager.showTitleScreen();
         uIscreen.playTheme(0);

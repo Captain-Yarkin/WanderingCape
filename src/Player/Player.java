@@ -25,9 +25,11 @@ public class Player implements IPlayer {
         this.health = health;
     }
 
+    /**
+     * This is the players dealing damage method
+     * @return Random number from the weapons damage value
+     */
     public int dealDamage() {
-        int playerDamage;
-        playerDamage = new java.util.Random().nextInt(getEquippedWeapon().damage);
-        return playerDamage;
+        return new java.util.Random().nextInt(getEquippedWeapon().damage);
     }
 }

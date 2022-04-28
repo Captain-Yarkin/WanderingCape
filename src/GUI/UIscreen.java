@@ -156,6 +156,10 @@ public class UIscreen {
 
     }
 
+    /**
+     * choose a theme via a number starting with 0
+     * @param n
+     */
     public void playTheme (int n) {
         sound.setFile(n);
         sound.play();
