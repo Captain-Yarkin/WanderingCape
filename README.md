@@ -28,11 +28,24 @@ The game is about reading the text to gather clues on what to do and choosing wh
 
 ## Sources
 
+### Resources for SFX
+
 runescapeTheme
 **LINK:** https://www.youtube.com/watch?v=C7Qo2QZ8NE8&t=23s
 
 swordSlashSoundEffect
 **LINK:** https://www.youtube.com/watch?v=RbU34j6QMOQ
+
+### Resources for programming
+
+general java turorial
+**LINK:** https://www.w3schools.com/java/default.asp
+
+javax.swing.* 
+**LINK:** https://docs.oracle.com/javase/7/docs/api/javax/swing/package-summary.html
+
+Enchanted switch statements
+**LINK:** https://www.vojtechruzicka.com/java-enhanced-switch/
 
 ## Inspiration
 
@@ -51,4 +64,6 @@ QuestLord gameplay
 Class diagrams are in the "classDiagrams" folder/package
 
 In the src -> Bugs-in-the-Game. Is used to play test the game. If I ever spotted a bug I added it to the list.
+
+
 
