@@ -65,6 +65,7 @@ QuestLord gameplay
 3. Splitting Storyline class into its own package and making classes for every direction. This will perhaps make it less cluttered in the Storyline class
 4. Saving the previous method of a visited location in a variable so that it is to be access if the player decided to go back. This makes it so when you're creating scenarios you only need to write the variable instead of the actual previous position.
 5. Also having a currentLocation variable so that when the player enters an area it is saved in the variable and then when going to another "location" the currenLocation -> previousLocation. Saving the old one.
+6. When creating a new equipment. One need to change many different classes for it to work. (Not much work, but it is possible make less steps.)
 
 ## Additional information
 
