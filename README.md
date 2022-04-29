@@ -23,12 +23,16 @@ To launch the game follow this step-by-step
 
 runescapeTheme
 **LINK:** https://www.youtube.com/watch?v=C7Qo2QZ8NE8&t=23s
+swordSlashSoundEffect
+**LINK:** https://www.youtube.com/watch?v=RbU34j6QMOQ
 
 ## Inspiration
 
 QuestLord gameplay
 **LINK:** https://www.youtube.com/watch?v=g0XVmo2pYzE
 
+## Class Diagams
+![yes](Class diagram constructors.png)
 
 
 ## Things to Improve
