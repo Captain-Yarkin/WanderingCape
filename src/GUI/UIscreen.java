@@ -40,7 +40,6 @@ public class UIscreen {
         gameWindow.setLayout(null);
         gameWindow.setTitle(title);
         gameWindow.setVisible(true);
-
         // TITLE SCREEN
         titleNamePanel = new JPanel();
         titleNamePanel.setBounds(200,250,600,100);
