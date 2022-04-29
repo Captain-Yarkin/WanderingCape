@@ -745,6 +745,7 @@ public class Storyline {
      * gives the player defaultStatus and shows the title screen when called
      */
     public void newGame(){
+        //DeafualtStatue
         defaultStatus();
         visibilityManager.showTitleScreen();
     }
