@@ -16,13 +16,14 @@ You wake up in a tavern after a heavy night of drinking. You don't remember anyt
 ### To launch the game follow this step-by-step
 1. Fork the repository to your local device.
 2. In the *Wandering Cape* repository open **src** -> **Game** -> **Game.java**
-3. run **Game.main()**.(The game should start without a probelm)
-4. **Game.java** works the same way as if it was a **Main.java**
+3. run **Game.main()**.(The game should start without a problem.
+4. **Game.java** works the same way as if it was a **Main.java** (If you know how main.java works :D)
 
 ### After starting
 The game is about reading the text to gather clues on what to do and choosing what to do through clicking choice buttons. The game will changes depending on what you do. Two different runs may have slight changes to them depending on which direction you go
 1. Click "start game" (To proceed to the game)
 2. Read story text (To get an understanding what is going on)
+3. Choose one of four buttons with text to choose your action.
 
 ## Sources
 
@@ -43,4 +44,6 @@ QuestLord gameplay
 3. Splitting Storyline class into its own package and making classes for every direction. This will perhaps make it less cluttered in the Storyline class
 4. Saving the previous method of a visited location in a variable so that it is to be access if the player decided to go back. This makes it so when you're creating scenarios you only need to write the variable instead of the actual previous position.
 5. Also having a currentLocation variable so that when the player enters an area it is saved in the variable and then when going to another "location" the currenLocation -> previousLocation. Saving the old one.
-6. 
+
+## Additional information
+Class diagrams are in the "classDiagrams" folder/package
