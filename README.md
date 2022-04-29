@@ -32,7 +32,7 @@ QuestLord gameplay
 **LINK:** https://www.youtube.com/watch?v=g0XVmo2pYzE
 
 ## Class Diagams
-![yes](Class diagram constructors.png)
+![Class diagram constructors](/classDiagram/Class-diagram-constructors.png "Class diagram of constructors")
 
 
 ## Things to Improve
