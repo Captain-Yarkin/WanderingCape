@@ -31,8 +31,5 @@ swordSlashSoundEffect
 QuestLord gameplay
 **LINK:** https://www.youtube.com/watch?v=g0XVmo2pYzE
 
-## Class Diagams
-![Class diagram constructors](/classDiagram/Class-diagram-constructors-image.jpg "Class diagram of constructors")
-
-
 ## Things to Improve
+
