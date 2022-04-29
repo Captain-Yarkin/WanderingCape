@@ -48,10 +48,23 @@ public class Storyline {
         uIscreen.weaponNameLabel.setText(player.getEquippedWeapon().name);
 
         //INFO
+            // 0 mean that the player doesn't have the info
+            // 1 means that the player is aware of the bandit and will not trigger the <AMBUSH> event
         infoBandit = 0;
+
+        //INVENTORY
+            // 0 means that the player doesn't have the might potion
+            // 1 means that the potion is in the inventory
+            // 2 means that the player drank the potion
+            // 3 means that the player gave the potion to the dwarf
         mightPotion = 0;
 
         //KILL LIST
+            // 0 means that the monster is not killed
+            // 1 means that the monster is engaged with you
+            // 2 means that the monster is dead
+            // 3 is for special encounters with monsters
+
         bush = 0;
         troll = 0;
         bandit = 0;
@@ -304,7 +317,7 @@ public class Storyline {
     private void banditEncounter(){
         creature = new MonsterBandit();
 
-        if (bandit == 3){
+        if (bandit == 2){
             uIscreen.mainTextArea.setText("You see the body of the dead bandit. Your job here is done");
         }
         else if (infoBandit == 1) {
@@ -315,7 +328,7 @@ public class Storyline {
             uIscreen.healthNumberLabel.setText("" + player.getHealth());
             infoBandit = 1;
         }
-        if(bandit != 3) {
+        if(bandit != 2) {
             uIscreen.choice1.setText("Battle");
         } else {
             uIscreen.choice1.setText("");
@@ -324,7 +337,7 @@ public class Storyline {
         uIscreen.choice3.setText("");
         uIscreen.choice4.setText("");
 
-        if (bandit !=3){
+        if (bandit !=2){
             game.nextPosition1 = "battle";
         } else {
             game.nextPosition1 = "";
@@ -432,7 +445,7 @@ public class Storyline {
             bush = 1;
         }
         if (creature.name.equals("Bandit") && creature.health<1){
-            bandit++;
+            bandit = 1;
         }
         if (creature.name.equals("Greg") && creature.health<1){
             peasant = 2;
@@ -499,7 +512,7 @@ public class Storyline {
 
     }
     private void banditSlain(){
-        bandit = 3;
+        bandit = 2;
         uIscreen.mainTextArea.setText("As you kill the Bandit you find a Might Potion on the bandit\n\nWhat do you do before leaving?");
         mightPotion = 1;
 
@@ -599,7 +612,6 @@ public class Storyline {
             uIscreen.mainTextArea.setText("You walk west and enter the blacksmith.\nA dwarf greets you and thanks you with a big smile");
         }
 
-        // Dont the characters longer the 21 characters or they go outside the box.
         if (mightPotion != 3) {
             uIscreen.choice1.setText("Talk to the Dwarf");
         } else {
@@ -712,6 +724,19 @@ public class Storyline {
         mightPotion = 3;
         player.setHealth(player.getHealth() + 90);
         uIscreen.healthNumberLabel.setText("" + player.getHealth());
+
+        uIscreen.choice1.setText("Ask about Bandit");
+        uIscreen.choice2.setText("What do you do?");
+        uIscreen.choice3.setText("Can I get an armor?");
+        uIscreen.choice4.setText("Go outside");
+
+        game.nextPosition1 = "west3Smith";
+        game.nextPosition2 = "west4Smith";
+        game.nextPosition3 = "west5Smith";
+        game.nextPosition4 = "goOutside";
+
+
+
 
     }
 
