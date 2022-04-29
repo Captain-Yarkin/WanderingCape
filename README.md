@@ -74,7 +74,7 @@ Much Love to Ryisnow check out his stuff.
 
 ## Additional information
 
-Class diagrams are in the "classDiagrams" folder/package
+There is a class diagram in the information folder/package
 
 In the src -> Bugs-in-the-Game. Is used to play test the game. If I ever spotted a bug I added it to the list.
 
