@@ -723,22 +723,22 @@ public class Storyline {
         game.nextPosition4 = "goOutside";
     }
     private void west6Reward(){
-        uIscreen.mainTextArea.setText("Dwarf Blacksmith: Thank you very much. Here is my best armor and let me bandage you up\nAs you equip the armor you feel safer");
+        uIscreen.mainTextArea.setText("Dwarf Blacksmith: Thank you very much. Here is my best armor and let me bandage you up\nAs you equip the armor and leave. You feel safer.");
         mightPotion = 3;
         player.setEquippedArmor(new ArmorIron());
         uIscreen.armorNameLabel.setText(player.getEquippedArmor().name);
         player.setHealth(10);
         uIscreen.healthNumberLabel.setText("" + player.getHealth());
 
-        uIscreen.choice1.setText("Ask about Bandit");
-        uIscreen.choice2.setText("What do you do?");
-        uIscreen.choice3.setText("Can I get an armor?");
-        uIscreen.choice4.setText("Go outside");
+        uIscreen.choice1.setText("Continue");
+        uIscreen.choice2.setText("");
+        uIscreen.choice3.setText("");
+        uIscreen.choice4.setText("");
 
-        game.nextPosition1 = "west3Smith";
-        game.nextPosition2 = "west4Smith";
-        game.nextPosition3 = "west5Smith";
-        game.nextPosition4 = "goOutside";
+        game.nextPosition1 = "goOutside";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
 
 
 
