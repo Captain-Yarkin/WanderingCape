@@ -9,15 +9,20 @@ You wake up in a tavern after a heavy night of drinking. You don't remember anyt
 
 ## Instruction
 
-To play the game you need to have
+### To play the game you need to have
 1. Java pre-installed
 2. IDE to launch the game
 
-To launch the game follow this step-by-step
+### To launch the game follow this step-by-step
 1. Fork the repository to your local device.
 2. In the *Wandering Cape* repository open **src** -> **Game** -> **Game.java**
 3. run **Game.main()**.(The game should start without a probelm)
 4. **Game.java** works the same way as if it was a **Main.java**
+
+### After starting
+The game is about reading the text to gather clues on what to do and choosing what to do through clicking choice buttons. The game will changes depending on what you do. Two different runs may have slight changes to them depending on which direction you go
+1. Click "start game" (To proceed to the game)
+2. Read story text (To get an understanding what is going on)
 
 ## Sources
 
