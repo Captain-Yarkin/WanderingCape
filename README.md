@@ -2,6 +2,11 @@
 
 *Wandering Cape* is a Fantasy Text based RPG inspired by old adventure games form the 1980s/90s.
 
+## Wandering Cape Trailer
+
+https://www.youtube.com/watch?v=P4LZjp4EgRU
+
+
 ## Background Story
 You wake up in a tavern after a heavy night of drinking. You don't remember anything from last night, but the only thing you know is that you put on your cape and wander forth.
 
@@ -28,11 +33,24 @@ The game is about reading the text to gather clues on what to do and choosing wh
 
 ## Sources
 
+### Resources for SFX
+
 runescapeTheme
 **LINK:** https://www.youtube.com/watch?v=C7Qo2QZ8NE8&t=23s
 
 swordSlashSoundEffect
 **LINK:** https://www.youtube.com/watch?v=RbU34j6QMOQ
+
+### Resources for programming
+
+general java turorial
+**LINK:** https://www.w3schools.com/java/default.asp
+
+javax.swing.* 
+**LINK:** https://docs.oracle.com/javase/7/docs/api/javax/swing/package-summary.html
+
+Enchanted switch statements
+**LINK:** https://www.vojtechruzicka.com/java-enhanced-switch/
 
 ## Inspiration
 
@@ -51,4 +69,6 @@ QuestLord gameplay
 Class diagrams are in the "classDiagrams" folder/package
 
 In the src -> Bugs-in-the-Game. Is used to play test the game. If I ever spotted a bug I added it to the list.
+
+
 
