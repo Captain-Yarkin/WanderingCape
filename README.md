@@ -59,6 +59,11 @@ Enchanted switch statements
 QuestLord gameplay
 **LINK:** https://www.youtube.com/watch?v=g0XVmo2pYzE
 
+I used this as ground works to make it a multiple class programm and adding things of my own. Like the music, storyline, armor, weapons, etc.
+Ryisnow
+**LINK:** https://www.youtube.com/watch?v=G5yr4sekAI0&t=2s&ab_channel=RyiSnow
+Much Love to Ryisnow check out his stuff.
+
 ## Things to Improve
 1. Moving the playerAttack method perhaps into Player/IPlayer and monsterAttack into creature mold
 2. The Player class can add things like armor and potion effect. Instead of it being a field value in Storyline defaultStatus() method
