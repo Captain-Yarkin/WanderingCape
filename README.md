@@ -4,6 +4,7 @@
 
 ## Background Story
 You wake up in a tavern after a heavy night of drinking. You don't remember anything from last night, but the only thing you know is that you put on your cape and wander forth.
+
 *Adventure awaits*
 
 
@@ -46,4 +47,8 @@ QuestLord gameplay
 5. Also having a currentLocation variable so that when the player enters an area it is saved in the variable and then when going to another "location" the currenLocation -> previousLocation. Saving the old one.
 
 ## Additional information
+
 Class diagrams are in the "classDiagrams" folder/package
+
+In the src -> Bugs-in-the-Game. Is used to play test the game. If I ever spotted a bug I added it to the list.
+
