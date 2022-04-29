@@ -1,5 +1,7 @@
 package Player;
 
+import Equipment.Armor.ArmorCloth;
+import Equipment.ArmorMold;
 import Equipment.WeaponMold;
 import Equipment.Weapons.WeaponDagger;
 
@@ -9,6 +11,7 @@ import Equipment.Weapons.WeaponDagger;
 public interface IPlayer {
     int health = 0;
     WeaponMold equippedWeapon = new WeaponDagger();
+    ArmorMold equippedArmor = new ArmorCloth();
     int dealDamage();
 
 }

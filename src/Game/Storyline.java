@@ -6,6 +6,8 @@ import Creature.Monsters.MonsterBush;
 import Creature.Monsters.MonsterTroll;
 import Creature.NPC.NPCPeasant;
 
+import Equipment.Armor.ArmorCloth;
+import Equipment.Armor.ArmorIron;
 import Equipment.Weapons.SecretWeapons.WeaponGun;
 import Equipment.Weapons.WeaponDagger;
 import Equipment.Weapons.WeaponLongsword;
@@ -45,7 +47,9 @@ public class Storyline {
 
         //PLAYER EQUIPPED WEAPON
         player.setEquippedWeapon(new WeaponDagger());
+        player.setEquippedArmor(new ArmorCloth());
         uIscreen.weaponNameLabel.setText(player.getEquippedWeapon().name);
+        uIscreen.armorNameLabel.setText(player.getEquippedArmor().name);
 
         //INFO
             // 0 mean that the player doesn't have the info
@@ -69,8 +73,6 @@ public class Storyline {
         troll = 0;
         bandit = 0;
         peasant = 0;
-
-
 
     }
 
@@ -230,7 +232,7 @@ public class Storyline {
     }
 
     private void north1Forest(){
-        uIscreen.mainTextArea.setText("As you walk north you reach a forest. The road is long.\n Your hear sound from a bush near you \nWhat will you do?");
+        uIscreen.mainTextArea.setText("As you walk north you reach a forest. The road is long.\nYour hear sound from a bush near you \nWhat will you do?");
 
         uIscreen.choice1.setText("Follow the road");
         uIscreen.choice2.setText("Search the bush");
@@ -349,6 +351,7 @@ public class Storyline {
     }
     private void trollEncounter(){
         creature = new MonsterTroll();
+        troll = 1;
 
         uIscreen.mainTextArea.setText("You go forward towards the scary noise and see a giant troll\nYou encouter " + creature.name + "\nThe Troll looks very strong and has <" + creature.health + "> health points");
 
@@ -451,12 +454,12 @@ public class Storyline {
             peasant = 2;
         }
         if (creature.name.equals("Troll")&& creature.health<1){
-            troll = 1;
+            troll = 2;
         }
     }
 
     private void monsterAttack(){
-        int monsterDamage = new java.util.Random().nextInt(creature.damage);
+        int monsterDamage = new java.util.Random().nextInt(creature.damage + player.getEquippedArmor().reduction);
 
         player.setHealth(player.getHealth() - monsterDamage);
         uIscreen.healthNumberLabel.setText("" + player.getHealth());
@@ -489,7 +492,7 @@ public class Storyline {
         if(bandit == 1){
             banditSlain();
         }
-        if(troll == 1){
+        if(troll == 2){
             win();
         }
         if(peasant == 2){
@@ -562,7 +565,7 @@ public class Storyline {
     }
 
     private void gameoverDeath(){
-        uIscreen.mainTextArea.setText("You are dead\n\nGAME OVER");
+        uIscreen.mainTextArea.setText("You are dead\n\n<GAME OVER>");
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Play Again");
         uIscreen.choice2.setText("");
@@ -576,7 +579,7 @@ public class Storyline {
 
     }
     private void gameoverNorth(){
-        uIscreen.mainTextArea.setText("You walk of the trail and become part of the tree men, ending you adventure\n\nGAME OVER");
+        uIscreen.mainTextArea.setText("You walk of the trail and become part of the tree men, ending you adventure\n\n<GAME OVER>");
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Play Again");
         uIscreen.choice2.setText("");
@@ -590,7 +593,7 @@ public class Storyline {
     }
 
     private void gameoverEast(){
-        uIscreen.mainTextArea.setText("As you walk into the alleyway on the right and see a protest for equal rights movement. Your adventure stops here as your carrier of equal right starts instead.\n\nGAME OVER");
+        uIscreen.mainTextArea.setText("As you walk into the alleyway on the right and see a protest for equal rights movement. Your adventure stops here as your carrier of equal right starts instead.\n\n<GAME OVER>");
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Play Again");
         uIscreen.choice2.setText("");
@@ -720,9 +723,11 @@ public class Storyline {
         game.nextPosition4 = "goOutside";
     }
     private void west6Reward(){
-        uIscreen.mainTextArea.setText("Dwarf Blacksmith: Thank you very much. Here is my best armor \nAs you equip the armor you feel safer");
+        uIscreen.mainTextArea.setText("Dwarf Blacksmith: Thank you very much. Here is my best armor and let me bandage you up\nAs you equip the armor you feel safer");
         mightPotion = 3;
-        player.setHealth(player.getHealth() + 90);
+        player.setEquippedArmor(new ArmorIron());
+        uIscreen.armorNameLabel.setText(player.getEquippedArmor().name);
+        player.setHealth(10);
         uIscreen.healthNumberLabel.setText("" + player.getHealth());
 
         uIscreen.choice1.setText("Ask about Bandit");
@@ -772,7 +777,6 @@ public class Storyline {
      * gives the player defaultStatus and shows the title screen when called
      */
     public void newGame(){
-        //DeafualtStatue
         defaultStatus();
         visibilityManager.showTitleScreen();
     }

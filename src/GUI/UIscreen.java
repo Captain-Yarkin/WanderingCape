@@ -6,56 +6,55 @@ import Music.Sound;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * This is where everything that is shown to the user is created from title screen to choice buttons
- */
 public class UIscreen {
 
     JFrame gameWindow;
     public JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, playerPanel;
-    public JLabel titelNameLabel, healthLabel, healthNumberLabel, weaponLabel, weaponNameLabel;
+    public JLabel titleNameLabel, healthLabel, healthNumberLabel, weaponLabel, weaponNameLabel, armorLabel, armorNameLabel;
     public JButton startButton, choice1, choice2, choice3, choice4;
     public JTextArea mainTextArea;
     String title = "Wandering Cape";
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 60);
-    Font noramlFont = new Font("Times New Roman", Font.PLAIN, 28);
+    Font normalFont = new Font("Times New Roman", Font.PLAIN, 28);
     Color backgroundColor = Color.BLACK;
     Color foregroundColor = Color.WHITE;
     Sound sound = new Sound();
 
     /**
-     * This creates the user interface for how the screen parametars are and how the user sees the game.
+     * This creates the user interface for how the screen parameters are and how the user sees the game.
      * @param choiceHandler
      */
     //This build currently does not support fullscreen
     public void createScreen(ChoiceControls choiceHandler) {
-        int height = 1000;
-        int width = 800;
+        int height = 800;
+        int width = 1100;
 
         // GAME WINDOW
         gameWindow = new JFrame();
-        gameWindow.setSize(height, width);
+        gameWindow.setSize(width, height);
         gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameWindow.getContentPane().setBackground(backgroundColor);
         gameWindow.setLayout(null);
         gameWindow.setTitle(title);
         gameWindow.setVisible(true);
+        gameWindow.setResizable(false);
+
         // TITLE SCREEN
         titleNamePanel = new JPanel();
-        titleNamePanel.setBounds(200,250,600,100);
+        titleNamePanel.setBounds(250,250,600,100);
         titleNamePanel.setBackground(backgroundColor);
-        titelNameLabel = new JLabel(title.toUpperCase());
-        titelNameLabel.setForeground(foregroundColor);
-        titelNameLabel.setFont(titleFont);
-        titleNamePanel.add(titelNameLabel);
+        titleNameLabel = new JLabel(title.toUpperCase());
+        titleNameLabel.setForeground(foregroundColor);
+        titleNameLabel.setFont(titleFont);
+        titleNamePanel.add(titleNameLabel);
 
         startButtonPanel = new JPanel();
-        startButtonPanel.setBounds(400,500, 200, 100);
+        startButtonPanel.setBounds(450,500, 200, 100);
         startButtonPanel.setBackground(backgroundColor);
         startButton = new JButton("START GAME");
         startButton.setBackground(backgroundColor);
         startButton.setForeground(foregroundColor);
-        startButton.setFont(noramlFont);
+        startButton.setFont(normalFont);
         startButton.setFocusPainted(false);
         startButton.addActionListener(choiceHandler);
         startButton.setActionCommand("start");
@@ -68,7 +67,7 @@ public class UIscreen {
 
             //Where the text appears to describe the scene
         mainTextPanel = new JPanel();
-        mainTextPanel.setBounds(100,100,800,350);
+        mainTextPanel.setBounds(150,100,800,350);
         mainTextPanel.setBackground(backgroundColor);
         gameWindow.add(mainTextPanel);
 
@@ -76,7 +75,7 @@ public class UIscreen {
         mainTextArea.setBounds(100,100,800,350);
         mainTextArea.setBackground(backgroundColor);
         mainTextArea.setForeground(foregroundColor);
-        mainTextArea.setFont(noramlFont);
+        mainTextArea.setFont(normalFont);
         mainTextArea.setLineWrap(true);
         mainTextArea.setWrapStyleWord(true);
         mainTextArea.setEditable(false);
@@ -84,7 +83,7 @@ public class UIscreen {
 
             //Choice box with buttons
         choiceButtonPanel = new JPanel();
-        choiceButtonPanel.setBounds(350,500,300,150);
+        choiceButtonPanel.setBounds(400,500,300,150);
         choiceButtonPanel.setBackground(backgroundColor);
         choiceButtonPanel.setLayout(new GridLayout(4,1));
         gameWindow.add(choiceButtonPanel);
@@ -94,7 +93,7 @@ public class UIscreen {
         choice1 = new JButton("1");
         choice1.setBackground(backgroundColor);
         choice1.setForeground(foregroundColor);
-        choice1.setFont(noramlFont);
+        choice1.setFont(normalFont);
         choice1.setFocusPainted(false);
         choice1.addActionListener(choiceHandler);
         choice1.setActionCommand("choice1");
@@ -103,7 +102,7 @@ public class UIscreen {
         choice2 = new JButton("2");
         choice2.setBackground(backgroundColor);
         choice2.setForeground(foregroundColor);
-        choice2.setFont(noramlFont);
+        choice2.setFont(normalFont);
         choice2.setFocusPainted(false);
         choice2.addActionListener(choiceHandler);
         choice2.setActionCommand("choice2");
@@ -112,7 +111,7 @@ public class UIscreen {
         choice3 = new JButton("3");
         choice3.setBackground(backgroundColor);
         choice3.setForeground(foregroundColor);
-        choice3.setFont(noramlFont);
+        choice3.setFont(normalFont);
         choice3.setFocusPainted(false);
         choice3.addActionListener(choiceHandler);
         choice3.setActionCommand("choice3");
@@ -121,7 +120,7 @@ public class UIscreen {
         choice4 = new JButton("4");
         choice4.setBackground(backgroundColor);
         choice4.setForeground(foregroundColor);
-        choice4.setFont(noramlFont);
+        choice4.setFont(normalFont);
         choice4.setFocusPainted(false);
         choice4.addActionListener(choiceHandler);
         choice4.setActionCommand("choice4");
@@ -130,35 +129,41 @@ public class UIscreen {
         playerPanel = new JPanel();
         playerPanel.setBounds(100,15,900,50);
         playerPanel.setBackground(backgroundColor);
-        playerPanel.setLayout(new GridLayout(1,4));
+        playerPanel.setLayout(new GridLayout(1,6));
         gameWindow.add(playerPanel);
             //Health label name
         healthLabel = new JLabel("Health: ");
-        healthLabel.setFont(noramlFont);
+        healthLabel.setFont(normalFont);
         healthLabel.setForeground(foregroundColor);
         playerPanel.add(healthLabel);
             //Health Label number
         healthNumberLabel = new JLabel();
-        healthNumberLabel.setFont(noramlFont);
+        healthNumberLabel.setFont(normalFont);
         healthNumberLabel.setForeground(foregroundColor);
         playerPanel.add(healthNumberLabel);
-            //Weapon Label name | "Current bug this label is gray and not white"
+            //Weapon Label name
         weaponLabel = new JLabel("Weapon: ");
-        weaponLabel.setFont(noramlFont);
+        weaponLabel.setFont(normalFont);
         weaponLabel.setForeground(foregroundColor);
         playerPanel.add(weaponLabel);
             //Weapon Label name type
         weaponNameLabel = new JLabel();
-        weaponNameLabel.setFont(noramlFont);
+        weaponNameLabel.setFont(normalFont);
         weaponNameLabel.setForeground(foregroundColor);
         playerPanel.add(weaponNameLabel);
+            //Armor Label name
+        armorLabel = new JLabel("Armor: ");
+        armorLabel.setFont(normalFont);
+        armorLabel.setForeground(foregroundColor);
+        playerPanel.add(armorLabel);
+            //Armor label name type
+        armorNameLabel = new JLabel();
+        armorNameLabel.setFont(normalFont);
+        armorNameLabel.setForeground(foregroundColor);
+        playerPanel.add(armorNameLabel);
 
     }
 
-    /**
-     * choose a theme via a number starting with 0
-     * @param n
-     */
     public void playTheme (int n) {
         sound.setFile(n);
         sound.play();

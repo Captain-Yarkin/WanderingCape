@@ -1,5 +1,6 @@
 package Player;
 
+import Equipment.ArmorMold;
 import Equipment.WeaponMold;
 
 /**
@@ -8,6 +9,16 @@ import Equipment.WeaponMold;
 public class Player implements IPlayer {
     private int health;
     private WeaponMold equippedWeapon;
+
+    private ArmorMold equippedArmor;
+
+    public ArmorMold getEquippedArmor(){
+        return equippedArmor;
+    }
+
+    public void setEquippedArmor(ArmorMold equippedArmor) {
+        this.equippedArmor = equippedArmor;
+    }
 
     public WeaponMold getEquippedWeapon() {
         return equippedWeapon;
