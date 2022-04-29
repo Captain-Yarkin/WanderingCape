@@ -4,6 +4,8 @@
 
 ## Wandering Cape Trailer
 
+**The trailer video is a little outdated with the current build**
+
 https://www.youtube.com/watch?v=P4LZjp4EgRU
 
 
