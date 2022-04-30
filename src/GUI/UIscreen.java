@@ -10,9 +10,9 @@ import java.awt.*;
 public class UIscreen {
 
     JFrame gameWindow;
-    public JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, playerPanel;
-    public JLabel titleNameLabel, healthLabel, healthNumberLabel, weaponLabel, weaponNameLabel, armorLabel, armorNameLabel;
-    public JButton startButton, choice1, choice2, choice3, choice4;
+    public JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, playerPanel, adventureNamePanel,chooseAdvPanel;
+    public JLabel titleNameLabel, healthLabel, healthNumberLabel, weaponLabel, weaponNameLabel, armorLabel, armorNameLabel, adventureNameLabel;
+    public JButton startButton, choice1, choice2, choice3, choice4, adventure1Button;
     public JTextArea mainTextArea;
     String title = "Wandering Cape";
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 60);
@@ -66,6 +66,33 @@ public class UIscreen {
         gameWindow.add(startButtonPanel);
 
         //CHOOSE ADVENTURE
+        adventureNamePanel = new JPanel();
+        adventureNamePanel.setBounds(200,200,600,100);
+        adventureNamePanel.setBackground(Color.BLUE);
+        adventureNameLabel = new JLabel("Adventures".toUpperCase());
+        adventureNameLabel.setForeground(foregroundColor);
+        adventureNameLabel.setFont(normalFont);
+        adventureNamePanel.add(adventureNameLabel);
+        gameWindow.add(adventureNamePanel);
+            //Choose buttons
+        chooseAdvPanel = new JPanel();
+        chooseAdvPanel.setBounds(400,500,300,150);
+        chooseAdvPanel.setBackground(Color.BLUE);
+        chooseAdvPanel.setLayout(new GridLayout(2,1));
+            //Choose Demo adventure
+        adventure1Button = new JButton("Adventure 1");
+        adventure1Button.setBackground(backgroundColor);
+        adventure1Button.setForeground(foregroundColor);
+        adventure1Button.setFont(normalFont);
+        adventure1Button.setFocusPainted(false);
+        adventure1Button.addActionListener(choiceHandler);
+        adventure1Button.setActionCommand("adventure1");
+        chooseAdvPanel.add(adventure1Button);
+
+
+        gameWindow.add(chooseAdvPanel);
+
+
 
 
         //CHOICE WINDOW

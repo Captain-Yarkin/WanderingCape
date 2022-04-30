@@ -25,6 +25,8 @@ public class VisibilityManager implements IVisibilityManager {
         ui.mainTextPanel.setVisible(false);
         ui.choiceButtonPanel.setVisible(false);
         ui.playerPanel.setVisible(false);
+        ui.adventureNamePanel.setVisible(false);
+
 
     }
     /**
@@ -47,7 +49,12 @@ public class VisibilityManager implements IVisibilityManager {
     public void chooseAdventure() {
         ui.titleNamePanel.setVisible(false);
         ui.startButtonPanel.setVisible(false);
+        ui.mainTextPanel.setVisible(false);
+        ui.choiceButtonPanel.setVisible(false);
+        ui.playerPanel.setVisible(false);
 
+        ui.adventureNamePanel.setVisible(true);
+        ui.chooseAdvPanel.setVisible(true);
 
 
 
