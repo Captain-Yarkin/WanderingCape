@@ -1,8 +1,9 @@
 ---Current bugs---
-* Dwarf blacksmith doesn't forget about the bandit after the potion is returned. He keeps talking about him if you ask him.
+* The bush is unkillable
 
 
 ---Fixed bugs---
 * Weapons Label in UIscreen is showing as gray and not white.
 * The VisibilityManger views ui as "null" and cant change anything.
 * Choice screen flashes before going straight to the title screen
+* Dwarf blacksmith doesn't forget about the bandit after the potion is returned. He keeps talking about him if you ask him.
