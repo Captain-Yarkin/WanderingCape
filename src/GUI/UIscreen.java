@@ -12,7 +12,7 @@ public class UIscreen {
     JFrame gameWindow;
     public JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, playerPanel, adventureNamePanel,chooseAdvPanel;
     public JLabel titleNameLabel, healthLabel, healthNumberLabel, weaponLabel, weaponNameLabel, armorLabel, armorNameLabel, adventureNameLabel;
-    public JButton startButton, choice1, choice2, choice3, choice4, adventure1Button;
+    public JButton startButton, choice1, choice2, choice3, choice4, adventure1Button, adventure2Button;
     public JTextArea mainTextArea;
     String title = "Wandering Cape";
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 60);
@@ -88,6 +88,15 @@ public class UIscreen {
         adventure1Button.addActionListener(choiceHandler);
         adventure1Button.setActionCommand("adventure1");
         chooseAdvPanel.add(adventure1Button);
+            //Choose First Adventure
+        adventure2Button = new JButton("Adventure: Pirate Haven");
+        adventure2Button.setBackground(backgroundColor);
+        adventure2Button.setForeground(foregroundColor);
+        adventure2Button.setFont(normalFont);
+        adventure2Button.setFocusPainted(false);
+        adventure2Button.addActionListener(choiceHandler);
+        adventure2Button.setActionCommand("adventure2");
+        chooseAdvPanel.add(adventure2Button);
 
 
         gameWindow.add(chooseAdvPanel);
