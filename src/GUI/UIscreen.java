@@ -2,6 +2,7 @@ package GUI;
 
 import GUI.UI.ChoiceControls;
 import Music.Sound;
+import Player.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,9 +21,10 @@ public class UIscreen {
     Color foregroundColor = Color.WHITE;
     Sound sound = new Sound();
 
+
     /**
      * This creates the user interface for how the screen parameters are and how the user sees the game.
-     * @param choiceHandler
+     * @param choiceHandler takes in the choice of a player after button is pressed.
      */
     //This build currently does not support fullscreen
     public void createScreen(ChoiceControls choiceHandler) {
@@ -47,7 +49,7 @@ public class UIscreen {
         titleNameLabel.setForeground(foregroundColor);
         titleNameLabel.setFont(titleFont);
         titleNamePanel.add(titleNameLabel);
-
+            //Start button panel and button
         startButtonPanel = new JPanel();
         startButtonPanel.setBounds(450,500, 200, 100);
         startButtonPanel.setBackground(backgroundColor);
@@ -62,6 +64,9 @@ public class UIscreen {
 
         gameWindow.add(titleNamePanel);
         gameWindow.add(startButtonPanel);
+
+        //CHOOSE ADVENTURE
+
 
         //CHOICE WINDOW
 

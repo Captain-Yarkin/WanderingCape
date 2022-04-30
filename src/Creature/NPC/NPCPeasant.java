@@ -3,7 +3,9 @@ package Creature.NPC;
 import Creature.CreatureMold;
 
 public class NPCPeasant extends CreatureMold {
-
+    /**
+     * Gregs attributes
+     */
     public NPCPeasant(){
         name = "Greg";
         health = 30;

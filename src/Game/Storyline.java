@@ -8,6 +8,8 @@ import Creature.NPC.NPCPeasant;
 
 import Equipment.Armor.ArmorCloth;
 import Equipment.Armor.ArmorIron;
+import Equipment.ArmorMold;
+import Equipment.WeaponMold;
 import Equipment.Weapons.SecretWeapons.WeaponGun;
 import Equipment.Weapons.WeaponDagger;
 import Equipment.Weapons.WeaponLongsword;
@@ -24,56 +26,49 @@ public class Storyline {
     Game game;
     UIscreen uIscreen;
     VisibilityManager visibilityManager;
-    Player player = new Player();
+    Player player;
     CreatureMold creature;
 
     //KILL/INFO LIST
     private int bush,troll,bandit,peasant, infoBandit, mightPotion;
 
 
-    public Storyline(Game gaming, UIscreen ui, VisibilityManager vm){
+    public Storyline(Game gaming, UIscreen ui, VisibilityManager vm, Player player){
         this.game = gaming;
         this.uIscreen = ui;
         this.visibilityManager = vm;
+        this.player = player;
     }
+    void gameStart(){
+        WeaponMold weapon = new WeaponDagger();
+        ArmorMold armor = new ArmorCloth();
 
-    /**
-     * This is what the players start with in the game.
-     */
-    private void defaultStatus(){
-        //PLAYER HEALTH
-        player.setHealth(10);
-        uIscreen.healthNumberLabel.setText("" + player.getHealth());
-
-        //PLAYER EQUIPPED WEAPON
-        player.setEquippedWeapon(new WeaponDagger());
-        player.setEquippedArmor(new ArmorCloth());
-        uIscreen.weaponNameLabel.setText(player.getEquippedWeapon().name);
-        uIscreen.armorNameLabel.setText(player.getEquippedArmor().name);
-
+        player.setDefaultStatus(10,weapon, armor);
+        uIscreen.healthNumberLabel.setText(""+ player.getHealth());
+        uIscreen.weaponNameLabel.setText(weapon.name);
+        uIscreen.armorNameLabel.setText(armor.name);
         //INFO
-            // 0 mean that the player doesn't have the info
-            // 1 means that the player is aware of the bandit and will not trigger the <AMBUSH> event
+        // 0 mean that the player doesn't have the info
+        // 1 means that the player is aware of the bandit and will not trigger the <AMBUSH> event
         infoBandit = 0;
 
         //INVENTORY
-            // 0 means that the player doesn't have the might potion
-            // 1 means that the potion is in the inventory
-            // 2 means that the player drank the potion
-            // 3 means that the player gave the potion to the dwarf
+        // 0 means that the player doesn't have the might potion
+        // 1 means that the potion is in the inventory
+        // 2 means that the player drank the potion
+        // 3 means that the player gave the potion to the dwarf
         mightPotion = 0;
 
         //KILL LIST
-            // 0 means that the monster is not killed
-            // 1 means that the monster is engaged with you
-            // 2 means that the monster is dead
-            // 3 is for special encounters with monsters
+        // 0 means that the monster is not killed
+        // 1 means that the monster is engaged with you
+        // 2 means that the monster is dead
+        // 3 is for special encounters with monsters
 
         bush = 0;
         troll = 0;
         bandit = 0;
         peasant = 0;
-
     }
 
     /**
@@ -777,7 +772,7 @@ public class Storyline {
      * gives the player defaultStatus and shows the title screen when called
      */
     public void newGame(){
-        defaultStatus();
+        gameStart();
         visibilityManager.showTitleScreen();
     }
 

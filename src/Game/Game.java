@@ -6,6 +6,7 @@ package Game;
 import GUI.UI.ChoiceControls;
 import GUI.UI.VisibilityManager;
 import GUI.UIscreen;
+import Player.Player;
 
 /**
  * this is where the Game is run. Works as a main function.
@@ -14,8 +15,10 @@ public class Game {
     ChoiceControls choiceHandler = new ChoiceControls(this);
     UIscreen uIscreen = new UIscreen();
 
+    Player player = new Player();
+
     public VisibilityManager visibilityManager = new VisibilityManager(uIscreen);
-    public Storyline storyline = new Storyline(this, uIscreen, visibilityManager);
+    public Storyline storyline = new Storyline(this, uIscreen, visibilityManager, player);
     public String nextPosition1, nextPosition2, nextPosition3, nextPosition4;
 
     /**
@@ -33,9 +36,9 @@ public class Game {
      */
     public Game() {
         uIscreen.createScreen(choiceHandler);
-        //storyline.defaultStatus();
-        storyline.newGame();
-        //visibilityManager.showTitleScreen();
+        storyline.gameStart();
+        //storyline.newGame();
+        visibilityManager.showTitleScreen();
         uIscreen.playTheme(0);
     }
 }

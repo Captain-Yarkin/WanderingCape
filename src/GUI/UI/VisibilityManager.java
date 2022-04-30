@@ -40,4 +40,18 @@ public class VisibilityManager implements IVisibilityManager {
         ui.playerPanel.setVisible(true);
     }
 
+    /**
+     * Go to choose adventure screen
+     */
+    @Override
+    public void chooseAdventure() {
+        ui.titleNamePanel.setVisible(false);
+        ui.startButtonPanel.setVisible(false);
+
+
+
+
+
+    }
+
 }

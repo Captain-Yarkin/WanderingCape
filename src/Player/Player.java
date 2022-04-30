@@ -2,6 +2,7 @@ package Player;
 
 import Equipment.ArmorMold;
 import Equipment.WeaponMold;
+import GUI.UIscreen;
 
 /**
  * This is the player class that tracks what the player's status is under the games progress
@@ -11,6 +12,9 @@ public class Player implements IPlayer {
     private WeaponMold equippedWeapon;
 
     private ArmorMold equippedArmor;
+
+    private UIscreen uIscreen = new UIscreen();
+
 
     public ArmorMold getEquippedArmor(){
         return equippedArmor;
@@ -42,5 +46,21 @@ public class Player implements IPlayer {
      */
     public int dealDamage() {
         return new java.util.Random().nextInt(getEquippedWeapon().damage);
+    }
+    /**
+     * This is what the players start with in the game.
+     */
+    @Override
+    public void setDefaultStatus(int hp, WeaponMold weapon, ArmorMold armor) {
+        //PLAYER HEALTH
+        setHealth(hp);
+        //uIscreen.healthNumberLabel.setText(""+ getHealth());
+
+        //PLAYER EQUIPPED WEAPON
+        setEquippedWeapon(weapon);
+        setEquippedArmor(armor);
+        //uIscreen.weaponNameLabel.setText(getEquippedWeapon().name);
+        //uIscreen.armorNameLabel.setText(getEquippedArmor().name);
+
     }
 }
