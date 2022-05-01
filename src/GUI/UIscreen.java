@@ -2,7 +2,6 @@ package GUI;
 
 import GUI.UI.ChoiceControls;
 import Music.Sound;
-import Player.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -211,8 +210,7 @@ public class UIscreen {
         sound.play();
         sound.loop();
     }
-    public void stopSound(int n){
-        sound.setFile(n);
+    public void stopSound(){
         sound.stop();
     }
     public void playSound(int n){

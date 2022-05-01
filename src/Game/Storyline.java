@@ -586,6 +586,7 @@ public class Storyline {
     }
 
     private void gameoverEast(){
+        uIscreen.stopSound();
         uIscreen.mainTextArea.setText("As you walk into the alleyway on the right and see a protest for equal rights movement. Your adventure stops here as your carrier of equal right starts instead.\n\n<GAME OVER>");
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Play Again");
@@ -770,6 +771,7 @@ public class Storyline {
      * gives the player defaultStatus and shows the title screen when called
      */
     public void newGame(){
+        uIscreen.playTheme(0);
         gameStart();
         visibilityManager.showTitleScreen();
     }
