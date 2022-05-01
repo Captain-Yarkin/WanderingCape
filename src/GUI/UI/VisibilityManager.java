@@ -34,9 +34,10 @@ public class VisibilityManager implements IVisibilityManager {
      * Hide TitleScreen show next screen
      */
     @Override
-    public void titleScreenToChoiceScreen() {
-        ui.titleNamePanel.setVisible(false);
-        ui.startButtonPanel.setVisible(false);
+    public void chooseAdvToChoiceScreen() {
+
+        ui.chooseAdvPanel.setVisible(false);
+        ui.adventureNamePanel.setVisible(false);
 
         ui.mainTextPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(true);

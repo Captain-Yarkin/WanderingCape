@@ -11,7 +11,7 @@ public class MonsterBush extends CreatureMold {
     public MonsterBush(){
         name = "Bush";
         health = 7;
-        damage = 1;
+        damage = 2;
         attackMessage = "You get scratched on the bush and take:";
     }
 

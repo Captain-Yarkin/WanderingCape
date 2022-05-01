@@ -67,19 +67,19 @@ public class UIscreen {
 
         //CHOOSE ADVENTURE
         adventureNamePanel = new JPanel();
-        adventureNamePanel.setBounds(200,200,600,100);
-        adventureNamePanel.setBackground(Color.BLUE);
+        adventureNamePanel.setBounds(200,200,700,100);
+        adventureNamePanel.setBackground(backgroundColor);
         adventureNameLabel = new JLabel("Adventures".toUpperCase());
         adventureNameLabel.setForeground(foregroundColor);
-        adventureNameLabel.setFont(normalFont);
+        adventureNameLabel.setFont(titleFont);
         adventureNamePanel.add(adventureNameLabel);
         gameWindow.add(adventureNamePanel);
             //Choose buttons
         chooseAdvPanel = new JPanel();
-        chooseAdvPanel.setBounds(400,500,300,150);
+        chooseAdvPanel.setBounds(350,400,400,200);
         chooseAdvPanel.setBackground(Color.BLUE);
         chooseAdvPanel.setLayout(new GridLayout(2,1));
-            //Choose Demo adventure
+            //Choose "Adventure 1" Demo adventure
         adventure1Button = new JButton("Adventure 1");
         adventure1Button.setBackground(backgroundColor);
         adventure1Button.setForeground(foregroundColor);
@@ -88,7 +88,7 @@ public class UIscreen {
         adventure1Button.addActionListener(choiceHandler);
         adventure1Button.setActionCommand("adventure1");
         chooseAdvPanel.add(adventure1Button);
-            //Choose First Adventure
+            //Choose "Adventure 2" First Adventure
         adventure2Button = new JButton("Adventure: Pirate Haven");
         adventure2Button.setBackground(backgroundColor);
         adventure2Button.setForeground(foregroundColor);

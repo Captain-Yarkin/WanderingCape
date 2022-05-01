@@ -23,17 +23,27 @@ public class ChoiceControls implements ActionListener {
         String playerChoice = event.getActionCommand();
 
         switch (playerChoice) {
+            /*
             case "start" -> {
                 game.visibilityManager.titleScreenToChoiceScreen();
                 game.storyline.tavern();
+            }
+
+             */
+
+            case "start" -> {
+                game.visibilityManager.chooseAdventure();
             }
             case "choice1" -> game.storyline.selectPosition(game.nextPosition1);
             case "choice2" -> game.storyline.selectPosition(game.nextPosition2);
             case "choice3" -> game.storyline.selectPosition(game.nextPosition3);
             case "choice4" -> game.storyline.selectPosition(game.nextPosition4);
 
-            case "adventure1" -> game.storyline.tavern();
-            //case "adventure2" -> game.pirateStoryline.beach();
+            case "adventure1" -> {
+                game.visibilityManager.chooseAdvToChoiceScreen();
+                game.storyline.tavern();
+                //case "adventure2" -> game.pirateStoryline.beach();
+            }
         }
 
     }
