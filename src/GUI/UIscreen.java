@@ -16,6 +16,7 @@ public class UIscreen {
     public JTextArea mainTextArea;
     String title = "Wandering Cape";
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 60);
+    Font adventureFont = new Font ("Times New Roman", Font.PLAIN, 90);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 28);
     Color backgroundColor = Color.BLACK;
     Color foregroundColor = Color.WHITE;
@@ -51,7 +52,7 @@ public class UIscreen {
         titleNamePanel.add(titleNameLabel);
             //Start button panel and button
         startButtonPanel = new JPanel();
-        startButtonPanel.setBounds(450,500, 200, 100);
+        startButtonPanel.setBounds(425,500, 250, 150);
         startButtonPanel.setBackground(backgroundColor);
         startButton = new JButton("START GAME");
         startButton.setBackground(backgroundColor);
@@ -71,7 +72,7 @@ public class UIscreen {
         adventureNamePanel.setBackground(backgroundColor);
         adventureNameLabel = new JLabel("Adventures".toUpperCase());
         adventureNameLabel.setForeground(foregroundColor);
-        adventureNameLabel.setFont(titleFont);
+        adventureNameLabel.setFont(adventureFont);
         adventureNamePanel.add(adventureNameLabel);
         gameWindow.add(adventureNamePanel);
             //Choose buttons
@@ -80,7 +81,7 @@ public class UIscreen {
         chooseAdvPanel.setBackground(Color.BLUE);
         chooseAdvPanel.setLayout(new GridLayout(2,1));
             //Choose "Adventure 1" Demo adventure
-        adventure1Button = new JButton("Adventure 1");
+        adventure1Button = new JButton("What happened yesterday...");
         adventure1Button.setBackground(backgroundColor);
         adventure1Button.setForeground(foregroundColor);
         adventure1Button.setFont(normalFont);
