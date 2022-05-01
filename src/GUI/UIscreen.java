@@ -1,7 +1,7 @@
 package GUI;
 
 import GUI.UI.ChoiceControls;
-import Music.Sound;
+import Sound.Sound;
 
 import javax.swing.*;
 import java.awt.*;
