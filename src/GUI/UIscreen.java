@@ -78,10 +78,10 @@ public class UIscreen {
             //Choose buttons
         chooseAdvPanel = new JPanel();
         chooseAdvPanel.setBounds(350,400,400,200);
-        chooseAdvPanel.setBackground(Color.BLUE);
-        chooseAdvPanel.setLayout(new GridLayout(2,1));
+        chooseAdvPanel.setBackground(backgroundColor);
+        chooseAdvPanel.setLayout(new GridLayout(3,1));
             //Choose "Adventure 1" Demo adventure
-        adventure1Button = new JButton("What happened yesterday...");
+        adventure1Button = new JButton("What happened yesterday?");
         adventure1Button.setBackground(backgroundColor);
         adventure1Button.setForeground(foregroundColor);
         adventure1Button.setFont(normalFont);
@@ -90,9 +90,9 @@ public class UIscreen {
         adventure1Button.setActionCommand("adventure1");
         chooseAdvPanel.add(adventure1Button);
             //Choose "Adventure 2" First Adventure
-        adventure2Button = new JButton("Adventure: Pirate Haven");
+        adventure2Button = new JButton("<Coming Soon>"); // Adventure: Pirate Haven
         adventure2Button.setBackground(backgroundColor);
-        adventure2Button.setForeground(foregroundColor);
+        adventure2Button.setForeground(Color.RED);
         adventure2Button.setFont(normalFont);
         adventure2Button.setFocusPainted(false);
         adventure2Button.addActionListener(choiceHandler);

@@ -296,6 +296,7 @@ public class Storyline {
     }
     private void bushEncounter(){
         creature = new MonsterBush();
+        bush = 1;
 
         uIscreen.mainTextArea.setText("As you reach for the bush. It becomes starts to move\nYou encouter " + creature.name);
         // Dont the characters longer the 21 characters or they go outside the box.
@@ -427,20 +428,17 @@ public class Storyline {
         uIscreen.choice3.setText("");
         uIscreen.choice4.setText("");
 
-        if(creature.health>0){
+        if (creature.health>0){
             game.nextPosition1 = "monsterAttack";
-            game.nextPosition2 = "";
-            game.nextPosition3 = "";
-            game.nextPosition4 = "";
         }
-        else if (creature.health<1){
+        else {
             game.nextPosition1 = "monsterSlain";
-            game.nextPosition2 = "";
-            game.nextPosition3 = "";
-            game.nextPosition4 = "";
         }
+        game.nextPosition2 = "";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
         if (creature.name.equals("Bush") && creature.health<1){
-            bush = 1;
+            bush = 2;
         }
         if (creature.name.equals("Bandit") && creature.health<1){
             bandit = 1;
@@ -481,7 +479,7 @@ public class Storyline {
 
     }
     private void monsterSlain(){
-        if(bush == 1){
+        if(bush == 2){
             bushSlain();
         }
         if(bandit == 1){
