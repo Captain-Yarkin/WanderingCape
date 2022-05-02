@@ -42,7 +42,7 @@ public class Storyline {
     }
     public void gameStart(){
         WeaponMold weapon = new WeaponDagger();
-        ArmorMold armor = new ArmorIron();
+        ArmorMold armor = new ArmorCloth();
 
         player.setDefaultStatus(10,weapon, armor);
         uIscreen.healthNumberLabel.setText(""+ player.getHealth());
@@ -787,7 +787,7 @@ public class Storyline {
      * gives the player defaultStatus and shows the title screen when called
      */
     public void newGame(){
-        //uIscreen.stopSound();
+        uIscreen.stopSound();
         uIscreen.playTheme(0);
         gameStart();
         visibilityManager.showTitleScreen();

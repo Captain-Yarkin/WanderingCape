@@ -7,6 +7,5 @@ public interface IVisibilityManager {
 
     void showTitleScreen();
     void chooseAdvToChoiceScreen();
-
     void chooseAdventure();
 }
