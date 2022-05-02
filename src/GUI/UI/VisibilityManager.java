@@ -31,7 +31,7 @@ public class VisibilityManager implements IVisibilityManager {
 
     }
     /**
-     * Hide TitleScreen show next screen
+     * Choose adventure screen to choice screen where the gameplay starts.
      */
     @Override
     public void chooseAdvToChoiceScreen() {
@@ -57,10 +57,6 @@ public class VisibilityManager implements IVisibilityManager {
 
         ui.adventureNamePanel.setVisible(true);
         ui.chooseAdvPanel.setVisible(true);
-
-
-
-
     }
 
 }

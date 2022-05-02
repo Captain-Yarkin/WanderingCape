@@ -24,7 +24,7 @@ public class Game {
 
     /**
      * main function
-     * @param args
+     * @param args launches the game
      */
     public static void main(String[] args) {
         new Game();
@@ -33,7 +33,7 @@ public class Game {
     /**
      * calls upon the UI.
      * call upon the newGame
-     * playes the first song in from the uIscreen -> sound -> resources
+     * plays the first song in from the uIscreen -> sound -> resources
      */
     public Game() {
         uIscreen.createScreen(choiceHandler);
