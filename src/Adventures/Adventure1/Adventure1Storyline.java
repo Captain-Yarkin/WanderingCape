@@ -8,12 +8,10 @@ import Creature.NPC.NPCPeasant;
 
 import Equipment.Armor.ArmorCloth;
 import Equipment.Armor.ArmorIron;
-import Equipment.ArmorMold;
-import Equipment.WeaponMold;
 import Equipment.Weapons.SecretWeapons.WeaponGun;
-import Equipment.Weapons.WeaponDagger;
 import Equipment.Weapons.WeaponLongsword;
 
+import Equipment.Weapons.WeaponShortsword;
 import GUI.UI.VisibilityManager;
 import GUI.UIscreen;
 
@@ -23,7 +21,7 @@ import Player.Player;
 /**
  * This is the Storyline where the games follow the main story
  */
-public class Storyline {
+public class Adventure1Storyline {
     Game game;
     UIscreen uIscreen;
     VisibilityManager visibilityManager;
@@ -34,20 +32,14 @@ public class Storyline {
     private int bush,troll,bandit,peasant, infoBandit, mightPotion;
 
 
-    public Storyline(Game gaming, UIscreen ui, VisibilityManager vm, Player player){
+    public Adventure1Storyline(Game gaming, UIscreen ui, VisibilityManager vm, Player player){
         this.game = gaming;
         this.uIscreen = ui;
         this.visibilityManager = vm;
         this.player = player;
     }
     public void gameStart(){
-        WeaponMold weapon = new WeaponDagger();
-        ArmorMold armor = new ArmorCloth();
-
-        player.setDefaultStatus(10,weapon, armor);
-        uIscreen.healthNumberLabel.setText(""+ player.getHealth());
-        uIscreen.weaponNameLabel.setText(weapon.name);
-        uIscreen.armorNameLabel.setText(armor.name);
+        player.setDefaultStatus(10,new WeaponShortsword(), new ArmorCloth());
         //INFO
         // 0 mean that the player doesn't have the info
         // 1 means that the player is aware of the bandit and will not trigger the <AMBUSH> event
@@ -214,17 +206,9 @@ public class Storyline {
         game.nextPosition4 = "south1Swamp";
     }
     private void backToSleep(){
-        uIscreen.mainTextArea.setText("As you fall a sleep for the final time. It seems like you dont wake up.\nGAME OVER");
-
-        uIscreen.choice1.setText("Play Again");
-        uIscreen.choice2.setText("");
-        uIscreen.choice3.setText("");
-        uIscreen.choice4.setText("");
-
-        game.nextPosition1 = "newGame";
-        game.nextPosition2 = "";
-        game.nextPosition3 = "";
-        game.nextPosition4 = "";
+        uIscreen.stopSound();
+        uIscreen.mainTextArea.setText("As you fall a sleep for the final time. It seems like you dont wake up.\n<GAME OVER>");
+        playAgain();
     }
 
     private void north1Forest(){
@@ -485,12 +469,6 @@ public class Storyline {
             game.nextPosition3 = "";
             game.nextPosition4 = "";
         }
-
-
-
-
-
-
     }
     private void monsterSlain(){
         if(bush == 2){
@@ -572,48 +550,24 @@ public class Storyline {
     }
 
     private void gameoverDeath(){
-
+        uIscreen.stopSound();
         uIscreen.mainTextArea.setText("You are dead\n\n<GAME OVER>");
         // Dont the characters longer the 21 characters or they go outside the box.
-        uIscreen.choice1.setText("Play Again");
-        uIscreen.choice2.setText("");
-        uIscreen.choice3.setText("");
-        uIscreen.choice4.setText("");
-
-        game.nextPosition1 = "newGame";
-        game.nextPosition2 = "";
-        game.nextPosition3 = "";
-        game.nextPosition4 = "";
+        playAgain();
 
     }
     private void gameoverNorth(){
         uIscreen.stopSound();
         uIscreen.mainTextArea.setText("You walk of the trail and become part of the tree men, ending you adventure\n\n<GAME OVER>");
         // Dont the characters longer the 21 characters or they go outside the box.
-        uIscreen.choice1.setText("Play Again");
-        uIscreen.choice2.setText("");
-        uIscreen.choice3.setText("");
-        uIscreen.choice4.setText("");
-
-        game.nextPosition1 = "newGame";
-        game.nextPosition2 = "";
-        game.nextPosition3 = "";
-        game.nextPosition4 = "";
+        playAgain();
     }
 
     private void gameoverEast(){
         uIscreen.stopSound();
         uIscreen.mainTextArea.setText("As you walk into the alleyway on the right and see a protest for equal rights movement. Your adventure stops here as your carrier of equal right starts instead.\n\n<GAME OVER>");
         // Dont the characters longer the 21 characters or they go outside the box.
-        uIscreen.choice1.setText("Play Again");
-        uIscreen.choice2.setText("");
-        uIscreen.choice3.setText("");
-        uIscreen.choice4.setText("");
-
-        game.nextPosition1 = "newGame";
-        game.nextPosition2 = "";
-        game.nextPosition3 = "";
-        game.nextPosition4 = "";
+        playAgain();
 
     }
 
@@ -772,15 +726,7 @@ public class Storyline {
     private void win(){
         uIscreen.mainTextArea.setText("As you slay the troll, you cut off its head going back to the village.\nThe Elder greets your thanking you forgiving all you school and drinking debts\n\nYOU WIN");
 
-        uIscreen.choice1.setText("Play Again");
-        uIscreen.choice2.setText("");
-        uIscreen.choice3.setText("");
-        uIscreen.choice4.setText("");
-
-        game.nextPosition1 = "newGame";
-        game.nextPosition2 = "";
-        game.nextPosition3 = "";
-        game.nextPosition4 = "";
+        playAgain();
     }
 
     /**
@@ -793,6 +739,18 @@ public class Storyline {
         visibilityManager.showTitleScreen();
     }
 
+    private void playAgain(){
+
+        uIscreen.choice1.setText("Play Again");
+        uIscreen.choice2.setText("");
+        uIscreen.choice3.setText("");
+        uIscreen.choice4.setText("");
+
+        game.nextPosition1 = "newGame";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
+    }
 
 
 }

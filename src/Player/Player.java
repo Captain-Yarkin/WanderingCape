@@ -13,7 +13,11 @@ public class Player implements IPlayer {
 
     private ArmorMold equippedArmor;
 
-    private UIscreen uIscreen = new UIscreen();
+    private UIscreen uIscreen;
+
+    public Player(UIscreen uIscreen){
+        this.uIscreen = uIscreen;
+    }
 
 
     public ArmorMold getEquippedArmor(){
@@ -54,13 +58,13 @@ public class Player implements IPlayer {
     public void setDefaultStatus(int hp, WeaponMold weapon, ArmorMold armor) {
         //PLAYER HEALTH
         setHealth(hp);
-        //uIscreen.healthNumberLabel.setText(""+ getHealth());
+        uIscreen.healthNumberLabel.setText(""+ getHealth());
 
         //PLAYER EQUIPPED WEAPON
         setEquippedWeapon(weapon);
         setEquippedArmor(armor);
-        //uIscreen.weaponNameLabel.setText(getEquippedWeapon().name);
-        //uIscreen.armorNameLabel.setText(getEquippedArmor().name);
+        uIscreen.weaponNameLabel.setText(getEquippedWeapon().name);
+        uIscreen.armorNameLabel.setText(getEquippedArmor().name);
 
     }
 }

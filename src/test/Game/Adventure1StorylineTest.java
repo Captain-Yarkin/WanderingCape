@@ -2,7 +2,7 @@ package test.Game;
 
 import org.junit.Test;
 
-public class StorylineTest {
+public class Adventure1StorylineTest {
 
     @Test
     public void selectPositionTest(){

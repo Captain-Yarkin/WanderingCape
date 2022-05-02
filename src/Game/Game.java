@@ -3,7 +3,7 @@
 package Game;
 
 
-import Adventures.Adventure1.Storyline;
+import Adventures.Adventure1.Adventure1Storyline;
 import GUI.UI.ChoiceControls;
 import GUI.UI.VisibilityManager;
 import GUI.UIscreen;
@@ -16,11 +16,14 @@ public class Game {
     ChoiceControls choiceHandler = new ChoiceControls(this);
     UIscreen uIscreen = new UIscreen();
 
-    Player player = new Player();
+    Player player = new Player(uIscreen);
 
     public VisibilityManager visibilityManager = new VisibilityManager(uIscreen);
-    public Storyline storyline = new Storyline(this, uIscreen, visibilityManager, player);
+
     public String nextPosition1, nextPosition2, nextPosition3, nextPosition4;
+
+
+    public Adventure1Storyline adventure1Storyline = new Adventure1Storyline(this, uIscreen, visibilityManager, player);
 
     /**
      * main function
@@ -37,7 +40,7 @@ public class Game {
      */
     public Game() {
         uIscreen.createScreen(choiceHandler);
-        storyline.gameStart();
+        adventure1Storyline.gameStart();
         //storyline.newGame();
         visibilityManager.showTitleScreen();
         uIscreen.playTheme(0);
