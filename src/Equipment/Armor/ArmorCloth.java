@@ -6,6 +6,6 @@ public class ArmorCloth extends ArmorMold {
 
     public ArmorCloth(){
         name = "Cloth armor";
-        reduction = -1 ;
+        reduction = -1;
     }
 }

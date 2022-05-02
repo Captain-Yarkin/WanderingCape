@@ -42,7 +42,7 @@ public class Storyline {
     }
     public void gameStart(){
         WeaponMold weapon = new WeaponDagger();
-        ArmorMold armor = new ArmorCloth();
+        ArmorMold armor = new ArmorIron();
 
         player.setDefaultStatus(10,weapon, armor);
         uIscreen.healthNumberLabel.setText(""+ player.getHealth());
@@ -453,11 +453,20 @@ public class Storyline {
     }
 
     private void monsterAttack(){
-        int monsterDamage = new java.util.Random().nextInt(creature.damage + player.getEquippedArmor().reduction);
+        try {
+            int monsterDamage = new java.util.Random().nextInt(creature.damage + player.getEquippedArmor().reduction);
 
-        player.setHealth(player.getHealth() - monsterDamage);
-        uIscreen.healthNumberLabel.setText("" + player.getHealth());
-        uIscreen.mainTextArea.setText(creature.name + creature.attackMessage + monsterDamage);
+            player.setHealth(player.getHealth() - monsterDamage);
+            uIscreen.healthNumberLabel.setText("" + player.getHealth());
+            uIscreen.mainTextArea.setText(creature.name + creature.attackMessage + monsterDamage);
+
+
+        } catch (IllegalArgumentException e){
+
+            player.setHealth(player.getHealth());
+            battle();
+
+        }
 
         uIscreen.choice1.setText("Continue");
         uIscreen.choice2.setText("");
@@ -476,6 +485,10 @@ public class Storyline {
             game.nextPosition3 = "";
             game.nextPosition4 = "";
         }
+
+
+
+
 
 
     }
@@ -559,6 +572,7 @@ public class Storyline {
     }
 
     private void gameoverDeath(){
+
         uIscreen.mainTextArea.setText("You are dead\n\n<GAME OVER>");
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Play Again");
@@ -573,6 +587,7 @@ public class Storyline {
 
     }
     private void gameoverNorth(){
+        uIscreen.stopSound();
         uIscreen.mainTextArea.setText("You walk of the trail and become part of the tree men, ending you adventure\n\n<GAME OVER>");
         // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Play Again");
@@ -772,6 +787,7 @@ public class Storyline {
      * gives the player defaultStatus and shows the title screen when called
      */
     public void newGame(){
+        //uIscreen.stopSound();
         uIscreen.playTheme(0);
         gameStart();
         visibilityManager.showTitleScreen();
