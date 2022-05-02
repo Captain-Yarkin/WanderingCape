@@ -3,6 +3,7 @@
 package Game;
 
 
+import Adventures.Adventure1.Storyline;
 import GUI.UI.ChoiceControls;
 import GUI.UI.VisibilityManager;
 import GUI.UIscreen;

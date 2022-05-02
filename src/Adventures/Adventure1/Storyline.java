@@ -1,4 +1,4 @@
-package Game;
+package Adventures.Adventure1;
 
 import Creature.CreatureMold;
 import Creature.Monsters.MonsterBandit;
@@ -17,6 +17,7 @@ import Equipment.Weapons.WeaponLongsword;
 import GUI.UI.VisibilityManager;
 import GUI.UIscreen;
 
+import Game.Game;
 import Player.Player;
 
 /**
@@ -39,7 +40,7 @@ public class Storyline {
         this.visibilityManager = vm;
         this.player = player;
     }
-    void gameStart(){
+    public void gameStart(){
         WeaponMold weapon = new WeaponDagger();
         ArmorMold armor = new ArmorCloth();
 
