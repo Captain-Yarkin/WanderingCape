@@ -1,6 +1,7 @@
 package Player;
 
 import Equipment.ArmorMold;
+import Equipment.Potion.MightPotion;
 import Equipment.WeaponMold;
 import GUI.UIscreen;
 
@@ -13,7 +14,9 @@ public class Player implements IPlayer {
 
     private ArmorMold equippedArmor;
 
-    private UIscreen uIscreen;
+    private MightPotion conditionEffect;
+
+    private final UIscreen uIscreen;
 
     public Player(UIscreen uIscreen){
         this.uIscreen = uIscreen;
@@ -26,6 +29,14 @@ public class Player implements IPlayer {
 
     public void setEquippedArmor(ArmorMold equippedArmor) {
         this.equippedArmor = equippedArmor;
+    }
+
+    public MightPotion getConditionEffect() {
+        return conditionEffect;
+    }
+
+    public void setConditionEffect(MightPotion conditionEffect) {
+        this.conditionEffect = conditionEffect;
     }
 
     public WeaponMold getEquippedWeapon() {

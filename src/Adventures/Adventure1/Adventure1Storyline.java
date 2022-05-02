@@ -9,9 +9,8 @@ import Creature.NPC.NPCPeasant;
 import Equipment.Armor.ArmorCloth;
 import Equipment.Armor.ArmorIron;
 import Equipment.Weapons.SecretWeapons.WeaponGun;
+import Equipment.Weapons.WeaponDagger;
 import Equipment.Weapons.WeaponLongsword;
-
-import Equipment.Weapons.WeaponShortsword;
 import GUI.UI.VisibilityManager;
 import GUI.UIscreen;
 
@@ -29,7 +28,7 @@ public class Adventure1Storyline {
     CreatureMold creature;
 
     //KILL/INFO LIST
-    private int bush,troll,bandit,peasant, infoBandit, mightPotion;
+    private int bandit, infoBandit, mightPotion;
 
 
     public Adventure1Storyline(Game gaming, UIscreen ui, VisibilityManager vm, Player player){
@@ -39,12 +38,11 @@ public class Adventure1Storyline {
         this.player = player;
     }
     public void gameStart(){
-        player.setDefaultStatus(10,new WeaponShortsword(), new ArmorCloth());
+        player.setDefaultStatus(10,new WeaponDagger(), new ArmorCloth());
         //INFO
         // 0 mean that the player doesn't have the info
         // 1 means that the player is aware of the bandit and will not trigger the <AMBUSH> event
         infoBandit = 0;
-
         //INVENTORY
         // 0 means that the player doesn't have the might potion
         // 1 means that the potion is in the inventory
@@ -58,10 +56,8 @@ public class Adventure1Storyline {
         // 2 means that the monster is dead
         // 3 is for special encounters with monsters
 
-        bush = 0;
-        troll = 0;
         bandit = 0;
-        peasant = 0;
+
     }
 
     /**
@@ -110,6 +106,7 @@ public class Adventure1Storyline {
     }
 
     public void tavern(){
+        creature = new NPCPeasant();
         uIscreen.mainTextArea.setText("You awaken next to a peasant after a heavy night drinking in the tavern not remembering anything from last night. A bartender is cleaning some cups behind the bar. \nWhat do you do?");
 
         uIscreen.choice1.setText("Talk to the bartender");
@@ -124,44 +121,49 @@ public class Adventure1Storyline {
     }
 
     private void talkToBartender() {
-        if (peasant != 3) {
-        uIscreen.mainTextArea.setText("You approach the bartender. The man waves at you greeting you after your slumber. \nHuman Bartender: Hello friend long night? \nWhat do you ask the bartender?");
-        } else {
+        if (creature.specialStatus) {
             uIscreen.mainTextArea.setText("As you approach the bartender. He look horrified after you killed Greg, but act like nothing to not provoke you to kill him. \nHuman Bartender: Hello friend... long night...? \nWhat do you ask the bartender?");
+        } else {
+            uIscreen.mainTextArea.setText("You approach the bartender. The man waves at you greeting you after your slumber. \nHuman Bartender: Hello friend long night? \nWhat do you ask the bartender?");
+
         }
         // Don't the characters longer the 21 characters, or they go outside the box.
-        uIscreen.choice1.setText("Ask about Rumours");
-        uIscreen.choice2.setText("Last night?");
-        uIscreen.choice3.setText("Who is that peasant?");
-        uIscreen.choice4.setText("Go outside");
-
-        game.nextPosition1 = "talkToBartender3";
-        game.nextPosition2 = "talkToBartender2";
-        game.nextPosition3 = "talkToBartender2";
-        game.nextPosition4 = "goOutside";
+        talkingWithBartender();
 
     }
 
     private void talkToBartender2(){
         uIscreen.mainTextArea.setText("Human Bartender: *Laughs* man you dont remember anything. \nDisregards your question.");
 
+        talkingWithBartender();
+
+    }
+
+    /**
+     * Dialog between you and the bartender
+     */
+    private void talkingWithBartender() {
         uIscreen.choice1.setText("Ask about Rumours");
         uIscreen.choice2.setText("Last night?");
-        uIscreen.choice3.setText("Who is that peasant?");
+        if (creature.specialStatus) {
+            uIscreen.choice3.setText("Who was that peasant?");
+        } else {
+            uIscreen.choice3.setText("Who is that peasant?");
+        }
         uIscreen.choice4.setText("Go outside");
 
         game.nextPosition1 = "talkToBartender3";
         game.nextPosition2 = "talkToBartender2";
         game.nextPosition3 = "talkToBartender2";
         game.nextPosition4 = "goOutside";
-
     }
+
     private void talkToBartender3() {
         uIscreen.mainTextArea.setText("Human Bartender: Rumours you ask? Aye I got some for you.\nTo the east of the village a bandit has stolen a might potion.\nTo the north there are rumours of a sword.\nTo the west there is a smith that can forge you some new armor\nTo the south there is a dangerous Troll killing our villagers\nThe person who kills the troll will get a reward from the Elder");
 
         uIscreen.choice1.setText("Thank you! I will go");
         uIscreen.choice2.setText("Last night?");
-        if (peasant == 3) {
+        if (creature.specialStatus) {
         uIscreen.choice3.setText("Who was that peasant?");
         } else {
             uIscreen.choice3.setText("Who is that peasant?");
@@ -175,9 +177,9 @@ public class Adventure1Storyline {
 
     }
     private void wakePeasant(){
-        creature = new NPCPeasant();
 
-        peasant = 1;
+
+        //peasant = 1;
 
 
         uIscreen.mainTextArea.setText("As you reach to wake up the peasant. He jolts up raising his fists attacking you. \n\nYou encounter: " + creature.name);
@@ -281,10 +283,9 @@ public class Adventure1Storyline {
     }
     private void bushEncounter(){
         creature = new MonsterBush();
-        bush = 1;
+        // bush = 1;
 
         uIscreen.mainTextArea.setText("As you reach for the bush. It becomes starts to move\nYou encouter " + creature.name);
-        // Dont the characters longer the 21 characters or they go outside the box.
         uIscreen.choice1.setText("Battle");
         uIscreen.choice2.setText("Flee");
         uIscreen.choice3.setText("");
@@ -300,7 +301,7 @@ public class Adventure1Storyline {
     private void banditEncounter(){
         creature = new MonsterBandit();
 
-        if (bandit == 2){
+        if (creature.specialStatus){
             uIscreen.mainTextArea.setText("You see the body of the dead bandit. Your job here is done");
         }
         else if (infoBandit == 1) {
@@ -311,7 +312,7 @@ public class Adventure1Storyline {
             uIscreen.healthNumberLabel.setText("" + player.getHealth());
             infoBandit = 1;
         }
-        if(bandit != 2) {
+        if(creature.lifeStatus) {
             uIscreen.choice1.setText("Battle");
         } else {
             uIscreen.choice1.setText("");
@@ -332,7 +333,7 @@ public class Adventure1Storyline {
     }
     private void trollEncounter(){
         creature = new MonsterTroll();
-        troll = 1;
+        //troll = 1;
 
         uIscreen.mainTextArea.setText("You go forward towards the scary noise and see a giant troll\nYou encouter " + creature.name + "\nThe Troll looks very strong and has <" + creature.health + "> health points");
 
@@ -368,7 +369,7 @@ public class Adventure1Storyline {
         uIscreen.mainTextArea.setText(creature.name + " has <" + creature.health + "> health points\n\nWhat do you do!");
 
         uIscreen.choice1.setText("Attack");
-        if (peasant == 1){
+        if (creature.name.equals(new NPCPeasant().name)){
             uIscreen.choice2.setText("");
         } else {
             uIscreen.choice2.setText("Flee");
@@ -377,16 +378,16 @@ public class Adventure1Storyline {
         uIscreen.choice4.setText("");
 
         game.nextPosition1 = "playerAttack";
-        if (peasant == 1){
+        if (creature.name.equals(new NPCPeasant().name)){
             game.nextPosition2 = "";
         }
-        if (bandit == 1){
+        if (creature.name.equals(new MonsterBandit().name)){
             game.nextPosition2 = "east1Slums";
         }
-        if (troll == 1){
+        if (creature.name.equals(new MonsterTroll().name)){
             game.nextPosition2 = "south1Swamp";
         }
-        if (bush == 1){
+        if (creature.name.equals(new MonsterBush().name)){
             game.nextPosition2 = "north1Forest";
         }
         game.nextPosition3 = "";
@@ -417,23 +418,27 @@ public class Adventure1Storyline {
             game.nextPosition1 = "monsterAttack";
         }
         else {
+            creature.lifeStatus = false;
             game.nextPosition1 = "monsterSlain";
         }
         game.nextPosition2 = "";
         game.nextPosition3 = "";
         game.nextPosition4 = "";
+        /*
         if (creature.name.equals("Bush") && creature.health<1){
-            bush = 2;
+            creature.lifeStatus = false;
         }
         if (creature.name.equals("Bandit") && creature.health<1){
             bandit = 1;
         }
         if (creature.name.equals("Greg") && creature.health<1){
-            peasant = 2;
+            creature.lifeStatus = false;
         }
         if (creature.name.equals("Troll")&& creature.health<1){
             troll = 2;
         }
+
+         */
     }
 
     private void monsterAttack(){
@@ -464,6 +469,7 @@ public class Adventure1Storyline {
             game.nextPosition4 = "";
         }
         else if (player.getHealth() <1){
+            uIscreen.stopSound();
             game.nextPosition1 = "gameoverDeath";
             game.nextPosition2 = "";
             game.nextPosition3 = "";
@@ -471,16 +477,16 @@ public class Adventure1Storyline {
         }
     }
     private void monsterSlain(){
-        if(bush == 2){
+        if(creature.name.equals(new MonsterBush().name)){
             bushSlain();
         }
-        if(bandit == 1){
+        if(creature.name.equals(new MonsterBandit().name)){
             banditSlain();
         }
-        if(troll == 2){
+        if(creature.name.equals(new MonsterTroll().name)){
             win();
         }
-        if(peasant == 2){
+        if(creature.name.equals(new NPCPeasant().name)){
             peasantSlain();
         }
 
@@ -534,7 +540,8 @@ public class Adventure1Storyline {
         uIscreen.mainTextArea.setText("You kill Greg. Oh the Humanity!\nAs you stand over Gregs body. You pick up a tubed hand crossbow");
         player.setEquippedWeapon(new WeaponGun());
         uIscreen.weaponNameLabel.setText(player.getEquippedWeapon().name);
-        peasant = 3;
+        creature.specialStatus = true;
+        //peasant = 3;
 
         uIscreen.choice1.setText("Talk to the Bartender");
         uIscreen.choice2.setText("Go Outside");
@@ -601,73 +608,29 @@ public class Adventure1Storyline {
     private void west2Smith(){
         uIscreen.mainTextArea.setText("You approach the dwarf. He looks at you, waiting. \n\nWhat do you do");
         // Dont the characters longer the 21 characters or they go outside the box.
-        uIscreen.choice1.setText("Ask about Bandit");
-        uIscreen.choice2.setText("What do you do?");
-        if(mightPotion == 1) {
-            uIscreen.choice3.setText("Here is your potion");
-        } else {
-            uIscreen.choice3.setText("Can I get an armor?");
-        }
-        uIscreen.choice4.setText("Go outside");
-
-        game.nextPosition1 = "west3Smith";
-        game.nextPosition2 = "west4Smith";
-        if (mightPotion == 1) {
-            game.nextPosition3 = "west6Reward";
-        } else {
-            game.nextPosition3 = "west5Smith";
-        }
-        game.nextPosition4 = "goOutside";
+        talkingWithSmith();
     }
+
     private void west3Smith(){
         infoBandit = 1;
         uIscreen.mainTextArea.setText("Dwarf Blacksmith: Aye there is a bandit that has stolen my Might Potion, I can't work without it. If you retrieve the potion for me I will give you my best armor.\nI have heard that the bandit is to the east on the left alleyway. Dont go to into the right alleyway! trust me");
 
-        uIscreen.choice1.setText("Ask about Bandit");
-        uIscreen.choice2.setText("What do you do?");
-        if(mightPotion == 1) {
-            uIscreen.choice3.setText("Here is your potion");
-        } else {
-            uIscreen.choice3.setText("Can I get an armor?");
-        }
-        uIscreen.choice4.setText("Go outside");
-
-        game.nextPosition1 = "west3Smith";
-        game.nextPosition2 = "west4Smith";
-        if (mightPotion == 1) {
-            game.nextPosition3 = "west6Reward";
-        } else {
-            game.nextPosition3 = "west5Smith";
-        }
-        game.nextPosition4 = "goOutside";
+        talkingWithSmith();
 
     }
     private void west4Smith(){
         uIscreen.mainTextArea.setText("Dwarf Blacksmith: I create equipment for adventures and farmers.");
 
-        uIscreen.choice1.setText("Ask about Bandit");
-        uIscreen.choice2.setText("What do you do?");
-        if(mightPotion == 1) {
-            uIscreen.choice3.setText("Here is your potion");
-        } else {
-            uIscreen.choice3.setText("Can I get an armor?");
-        }
-        uIscreen.choice4.setText("Go outside");
-
-        game.nextPosition1 = "west3Smith";
-        game.nextPosition2 = "west4Smith";
-        if (mightPotion == 1) {
-            game.nextPosition3 = "west6Reward";
-        } else {
-            game.nextPosition3 = "west5Smith";
-        }
-        game.nextPosition4 = "goOutside";
+        talkingWithSmith();
 
     }
 
     private void west5Smith() {
         uIscreen.mainTextArea.setText("Dwarf Blacksmith: Only if you get back my Might Potion. Can't make anything without it...\n\n*The dwarf sigh...*\nWhat do you do?");
 
+        talkingWithSmith();
+    }
+    private void talkingWithSmith() {
         uIscreen.choice1.setText("Ask about Bandit");
         uIscreen.choice2.setText("What do you do?");
         if(mightPotion == 1) {
@@ -704,9 +667,6 @@ public class Adventure1Storyline {
         game.nextPosition3 = "";
         game.nextPosition4 = "";
 
-
-
-
     }
 
     private void south1Swamp(){
@@ -739,6 +699,9 @@ public class Adventure1Storyline {
         visibilityManager.showTitleScreen();
     }
 
+    /**
+     * This is the playAgain method that repeats if you die
+     */
     private void playAgain(){
 
         uIscreen.choice1.setText("Play Again");

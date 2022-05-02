@@ -8,4 +8,9 @@ public class CreatureMold {
     public int health;
     public int damage;
     public String attackMessage;
+    /**
+     * if the creature is alive or dead
+     */
+    public boolean lifeStatus;
+    public boolean specialStatus;
 }

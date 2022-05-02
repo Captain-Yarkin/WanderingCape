@@ -41,7 +41,6 @@ public class Game {
     public Game() {
         uIscreen.createScreen(choiceHandler);
         adventure1Storyline.gameStart();
-        //storyline.newGame();
         visibilityManager.showTitleScreen();
         uIscreen.playTheme(0);
     }

@@ -15,6 +15,8 @@ public class MonsterBandit extends CreatureMold {
         health = 7;
         damage = 6;
         attackMessage = "Stabs you with his knife dealing:";
+        lifeStatus = true;
+        specialStatus = false;
     }
 
 }
