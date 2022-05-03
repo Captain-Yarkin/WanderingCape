@@ -197,7 +197,7 @@ public class Adventure1Storyline {
     private void backToSleep(){
         uIscreen.stopSound();
         uIscreen.mainTextArea.setText("As you fall a sleep for the final time. It seems like you dont wake up.\n<GAME OVER>");
-        playAgain();
+        displayPlayAgain();
     }
 
     private void north1Forest(){
@@ -538,21 +538,21 @@ public class Adventure1Storyline {
         uIscreen.stopSound();
         uIscreen.mainTextArea.setText("You are dead\n\n<GAME OVER>");
 
-        playAgain();
+        displayPlayAgain();
 
     }
     private void gameoverNorth(){
         uIscreen.stopSound();
         uIscreen.mainTextArea.setText("You walk of the trail and become part of the tree men, ending you adventure\n\n<GAME OVER>");
 
-        playAgain();
+        displayPlayAgain();
     }
 
     private void gameoverEast(){
         uIscreen.stopSound();
         uIscreen.mainTextArea.setText("As you walk into the alleyway on the right and see a protest for equal rights movement. Your adventure stops here as your carrier of equal right starts instead.\n\n<GAME OVER>");
 
-        playAgain();
+        displayPlayAgain();
 
     }
 
@@ -661,7 +661,7 @@ public class Adventure1Storyline {
     private void win(){
         uIscreen.mainTextArea.setText("As you slay the troll, you cut off its head going back to the village.\nThe Elder greets your thanking you forgiving all you school and drinking debts\n\nYOU WIN");
 
-        playAgain();
+        displayPlayAgain();
     }
 
     /**
@@ -677,7 +677,7 @@ public class Adventure1Storyline {
     /**
      * This is the playAgain method that repeats if you die
      */
-    private void playAgain(){
+    private void displayPlayAgain(){
 
         uIscreen.choice1.setText("Play Again");
         uIscreen.choice2.setText("");
