@@ -25,10 +25,10 @@ public class Adventure1Storyline {
     UIscreen uIscreen;
     VisibilityManager visibilityManager;
     Player player;
-    CreatureMold creature;
+    CreatureMold creatureCommon, creatureBandit, creatureBattling;
 
     //KILL/INFO LIST
-    private int bandit, infoBandit, mightPotion;
+    private int mightPotion;
 
 
     public Adventure1Storyline(Game gaming, UIscreen ui, VisibilityManager vm, Player player){
@@ -39,10 +39,6 @@ public class Adventure1Storyline {
     }
     public void gameStart(){
         player.setDefaultStatus(10,new WeaponDagger(), new ArmorCloth());
-        //INFO
-        // 0 mean that the player doesn't have the info
-        // 1 means that the player is aware of the bandit and will not trigger the <AMBUSH> event
-        infoBandit = 0;
         //INVENTORY
         // 0 means that the player doesn't have the might potion
         // 1 means that the potion is in the inventory
@@ -50,14 +46,7 @@ public class Adventure1Storyline {
         // 3 means that the player gave the potion to the dwarf
         mightPotion = 0;
 
-        //KILL LIST
-        // 0 means that the monster is not killed
-        // 1 means that the monster is engaged with you
-        // 2 means that the monster is dead
-        // 3 is for special encounters with monsters
-
-        bandit = 0;
-
+        creatureBandit = new MonsterBandit();
     }
 
     /**
@@ -106,7 +95,8 @@ public class Adventure1Storyline {
     }
 
     public void tavern(){
-        creature = new NPCPeasant();
+        creatureCommon = new NPCPeasant();
+        creatureBattling = creatureCommon;
         uIscreen.mainTextArea.setText("You awaken next to a peasant after a heavy night drinking in the tavern not remembering anything from last night. A bartender is cleaning some cups behind the bar. \nWhat do you do?");
 
         uIscreen.choice1.setText("Talk to the bartender");
@@ -121,7 +111,7 @@ public class Adventure1Storyline {
     }
 
     private void talkToBartender() {
-        if (creature.specialStatus) {
+        if (creatureCommon.specialStatus) {
             uIscreen.mainTextArea.setText("As you approach the bartender. He look horrified after you killed Greg, but act like nothing to not provoke you to kill him. \nHuman Bartender: Hello friend... long night...? \nWhat do you ask the bartender?");
         } else {
             uIscreen.mainTextArea.setText("You approach the bartender. The man waves at you greeting you after your slumber. \nHuman Bartender: Hello friend long night? \nWhat do you ask the bartender?");
@@ -145,7 +135,7 @@ public class Adventure1Storyline {
     private void talkingWithBartender() {
         uIscreen.choice1.setText("Ask about Rumours");
         uIscreen.choice2.setText("Last night?");
-        if (creature.specialStatus) {
+        if (creatureCommon.specialStatus) {
             uIscreen.choice3.setText("Who was that peasant?");
         } else {
             uIscreen.choice3.setText("Who is that peasant?");
@@ -163,7 +153,7 @@ public class Adventure1Storyline {
 
         uIscreen.choice1.setText("Thank you! I will go");
         uIscreen.choice2.setText("Last night?");
-        if (creature.specialStatus) {
+        if (creatureCommon.specialStatus) {
         uIscreen.choice3.setText("Who was that peasant?");
         } else {
             uIscreen.choice3.setText("Who is that peasant?");
@@ -179,10 +169,7 @@ public class Adventure1Storyline {
     private void wakePeasant(){
 
 
-        //peasant = 1;
-
-
-        uIscreen.mainTextArea.setText("As you reach to wake up the peasant. He jolts up raising his fists attacking you. \n\nYou encounter: " + creature.name);
+        uIscreen.mainTextArea.setText("As you reach to wake up the peasant. He jolts up raising his fists attacking you. \n\nYou encounter: " + creatureCommon.name);
 
         uIscreen.choice1.setText("Battle");
         uIscreen.choice2.setText("*To drunk to Flee*");
@@ -251,15 +238,12 @@ public class Adventure1Storyline {
         game.nextPosition4 = "north1Forest";
     }
     private void swordEquipped(){
-        uIscreen.mainTextArea.setText("As you grab the hilt of the sword. With all your might you pull it out. \n Your aquire a longsword");
+        uIscreen.mainTextArea.setText("As you grab the hilt of the sword. With all your might you pull it out. \nYour acquire a longsword");
 
         player.setEquippedWeapon(new WeaponLongsword());
         uIscreen.weaponNameLabel.setText(player.getEquippedWeapon().name);
 
-        uIscreen.choice1.setText("");
-        uIscreen.choice2.setText("");
-        uIscreen.choice3.setText("");
-        uIscreen.choice4.setText("Go back");
+        goBackUIBlank();
 
         game.nextPosition1 = "";
         game.nextPosition2 = "";
@@ -270,10 +254,7 @@ public class Adventure1Storyline {
     private void north2NoSword(){
         uIscreen.mainTextArea.setText("As you stand back. You look at the rock you pulled the sword from.\nWhat do you do?");
 
-        uIscreen.choice1.setText("");
-        uIscreen.choice2.setText("");
-        uIscreen.choice3.setText("");
-        uIscreen.choice4.setText("Go back");
+        goBackUIBlank();
 
         game.nextPosition1 = "";
         game.nextPosition2 = "";
@@ -282,10 +263,10 @@ public class Adventure1Storyline {
 
     }
     private void bushEncounter(){
-        creature = new MonsterBush();
-        // bush = 1;
+        creatureCommon = new MonsterBush();
+        creatureBattling = creatureCommon;
 
-        uIscreen.mainTextArea.setText("As you reach for the bush. It becomes starts to move\nYou encouter " + creature.name);
+        uIscreen.mainTextArea.setText("As you reach for the bush. It becomes starts to move\nYou encounter " + creatureCommon.name);
         uIscreen.choice1.setText("Battle");
         uIscreen.choice2.setText("Flee");
         uIscreen.choice3.setText("");
@@ -299,20 +280,20 @@ public class Adventure1Storyline {
     }
 
     private void banditEncounter(){
-        creature = new MonsterBandit();
+        creatureBattling = creatureBandit;
 
-        if (creature.specialStatus){
+        if (!creatureBandit.lifeStatus){
             uIscreen.mainTextArea.setText("You see the body of the dead bandit. Your job here is done");
         }
-        else if (infoBandit == 1) {
+        else if (creatureBandit.specialStatus) {
             uIscreen.mainTextArea.setText("You are aware of the bandits tricks and approach carefully\nYou see the bandit ready to pounce at a moments notice.");
         } else {
             uIscreen.mainTextArea.setText("As you walk into the alleyway on the left.\n<AMBUSH> \nYou get stabbed from behind by the bandit. \nYou take: 3 damage");
             player.setHealth(player.getHealth() - 3);
             uIscreen.healthNumberLabel.setText("" + player.getHealth());
-            infoBandit = 1;
+            creatureBandit.specialStatus = true;
         }
-        if(creature.lifeStatus) {
+        if(creatureBandit.lifeStatus) {
             uIscreen.choice1.setText("Battle");
         } else {
             uIscreen.choice1.setText("");
@@ -321,7 +302,7 @@ public class Adventure1Storyline {
         uIscreen.choice3.setText("");
         uIscreen.choice4.setText("");
 
-        if (bandit !=2){
+        if (creatureBandit.lifeStatus){
             game.nextPosition1 = "battle";
         } else {
             game.nextPosition1 = "";
@@ -332,10 +313,11 @@ public class Adventure1Storyline {
 
     }
     private void trollEncounter(){
-        creature = new MonsterTroll();
-        //troll = 1;
+        creatureCommon = new MonsterTroll();
+        creatureBattling = creatureCommon;
 
-        uIscreen.mainTextArea.setText("You go forward towards the scary noise and see a giant troll\nYou encouter " + creature.name + "\nThe Troll looks very strong and has <" + creature.health + "> health points");
+
+        uIscreen.mainTextArea.setText("You go forward towards the scary noise and see a giant troll\nYou encounter " + creatureCommon.name + "\nThe Troll looks very strong and has <" + creatureCommon.health + "> health points");
 
         uIscreen.choice1.setText("Battle");
         uIscreen.choice2.setText("Leave to get stronger");
@@ -366,10 +348,10 @@ public class Adventure1Storyline {
     }
 
     private void battle(){
-        uIscreen.mainTextArea.setText(creature.name + " has <" + creature.health + "> health points\n\nWhat do you do!");
+        uIscreen.mainTextArea.setText(creatureBattling.name + " has <" + creatureBattling.health + "> health points\n\nWhat do you do!");
 
         uIscreen.choice1.setText("Attack");
-        if (creature.name.equals(new NPCPeasant().name)){
+        if (creatureBattling.name.equals(new NPCPeasant().name)){
             uIscreen.choice2.setText("");
         } else {
             uIscreen.choice2.setText("Flee");
@@ -378,16 +360,16 @@ public class Adventure1Storyline {
         uIscreen.choice4.setText("");
 
         game.nextPosition1 = "playerAttack";
-        if (creature.name.equals(new NPCPeasant().name)){
+        if (creatureBattling.name.equals(new NPCPeasant().name)){
             game.nextPosition2 = "";
         }
-        if (creature.name.equals(new MonsterBandit().name)){
+        if (creatureBattling.name.equals(new MonsterBandit().name)){
             game.nextPosition2 = "east1Slums";
         }
-        if (creature.name.equals(new MonsterTroll().name)){
+        if (creatureBattling.name.equals(new MonsterTroll().name)){
             game.nextPosition2 = "south1Swamp";
         }
-        if (creature.name.equals(new MonsterBush().name)){
+        if (creatureBattling.name.equals(new MonsterBush().name)){
             game.nextPosition2 = "north1Forest";
         }
         game.nextPosition3 = "";
@@ -406,48 +388,34 @@ public class Adventure1Storyline {
         }
 
 
-        uIscreen.mainTextArea.setText("You attacked the " + creature.name + " and do " + playerDamage + " damage!");
-        creature.health = creature.health - playerDamage;
+        uIscreen.mainTextArea.setText("You attacked the " + creatureBattling.name + " and do " + playerDamage + " damage!");
+        creatureBattling.health = creatureBattling.health - playerDamage;
 
         uIscreen.choice1.setText("Continue");
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
         uIscreen.choice4.setText("");
 
-        if (creature.health>0){
+        if (creatureBattling.health>0){
             game.nextPosition1 = "monsterAttack";
         }
         else {
-            creature.lifeStatus = false;
+            creatureBattling.lifeStatus = false;
             game.nextPosition1 = "monsterSlain";
         }
         game.nextPosition2 = "";
         game.nextPosition3 = "";
         game.nextPosition4 = "";
-        /*
-        if (creature.name.equals("Bush") && creature.health<1){
-            creature.lifeStatus = false;
-        }
-        if (creature.name.equals("Bandit") && creature.health<1){
-            bandit = 1;
-        }
-        if (creature.name.equals("Greg") && creature.health<1){
-            creature.lifeStatus = false;
-        }
-        if (creature.name.equals("Troll")&& creature.health<1){
-            troll = 2;
-        }
 
-         */
     }
 
     private void monsterAttack(){
         try {
-            int monsterDamage = new java.util.Random().nextInt(creature.damage + player.getEquippedArmor().reduction);
+            int monsterDamage = new java.util.Random().nextInt(creatureBattling.damage + player.getEquippedArmor().reduction);
 
             player.setHealth(player.getHealth() - monsterDamage);
             uIscreen.healthNumberLabel.setText("" + player.getHealth());
-            uIscreen.mainTextArea.setText(creature.name + creature.attackMessage + monsterDamage);
+            uIscreen.mainTextArea.setText(creatureBattling.name + creatureBattling.attackMessage + monsterDamage);
 
 
         } catch (IllegalArgumentException e){
@@ -477,23 +445,23 @@ public class Adventure1Storyline {
         }
     }
     private void monsterSlain(){
-        if(creature.name.equals(new MonsterBush().name)){
+        if(creatureBattling.name.equals(new MonsterBush().name)){
             bushSlain();
         }
-        if(creature.name.equals(new MonsterBandit().name)){
+        if(creatureBattling.name.equals(new MonsterBandit().name)){
             banditSlain();
         }
-        if(creature.name.equals(new MonsterTroll().name)){
+        if(creatureBattling.name.equals(new MonsterTroll().name)){
             win();
         }
-        if(creature.name.equals(new NPCPeasant().name)){
+        if(creatureBattling.name.equals(new NPCPeasant().name)){
             peasantSlain();
         }
 
     }
     private void bushSlain(){
-        uIscreen.mainTextArea.setText("You defeated the "+ creature.name + " the monster was a simple bush" + "\nWhat do you do?");
-        // Dont the characters longer the 21 characters or they go outside the box.
+        uIscreen.mainTextArea.setText("You defeated the "+ creatureCommon.name + " the monster was a simple bush" + "\nWhat do you do?");
+
         uIscreen.choice1.setText("Punch the bush");
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
@@ -506,7 +474,7 @@ public class Adventure1Storyline {
 
     }
     private void banditSlain(){
-        bandit = 2;
+        creatureBandit.lifeStatus = false;
         uIscreen.mainTextArea.setText("As you kill the Bandit you find a Might Potion on the bandit\n\nWhat do you do before leaving?");
         mightPotion = 1;
 
@@ -536,12 +504,22 @@ public class Adventure1Storyline {
 
 
     }
+
+    /**
+     * Visually update the choice box buttons to |*BLANK*|*BLANK*|*BLANK*|Go back|
+     */
+    public void goBackUIBlank(){
+        uIscreen.choice1.setText("");
+        uIscreen.choice2.setText("");
+        uIscreen.choice3.setText("");
+        uIscreen.choice4.setText("Go back");
+    }
     private void peasantSlain(){
-        uIscreen.mainTextArea.setText("You kill Greg. Oh the Humanity!\nAs you stand over Gregs body. You pick up a tubed hand crossbow");
+        uIscreen.mainTextArea.setText("You kill Greg. Oh the Humanity!\nAs you stand over Greg's body. You pick up a tubed hand crossbow");
         player.setEquippedWeapon(new WeaponGun());
         uIscreen.weaponNameLabel.setText(player.getEquippedWeapon().name);
-        creature.specialStatus = true;
-        //peasant = 3;
+        creatureCommon.specialStatus = true;
+
 
         uIscreen.choice1.setText("Talk to the Bartender");
         uIscreen.choice2.setText("Go Outside");
@@ -559,25 +537,24 @@ public class Adventure1Storyline {
     private void gameoverDeath(){
         uIscreen.stopSound();
         uIscreen.mainTextArea.setText("You are dead\n\n<GAME OVER>");
-        // Dont the characters longer the 21 characters or they go outside the box.
+
         playAgain();
 
     }
     private void gameoverNorth(){
         uIscreen.stopSound();
         uIscreen.mainTextArea.setText("You walk of the trail and become part of the tree men, ending you adventure\n\n<GAME OVER>");
-        // Dont the characters longer the 21 characters or they go outside the box.
+
         playAgain();
     }
 
     private void gameoverEast(){
         uIscreen.stopSound();
         uIscreen.mainTextArea.setText("As you walk into the alleyway on the right and see a protest for equal rights movement. Your adventure stops here as your carrier of equal right starts instead.\n\n<GAME OVER>");
-        // Dont the characters longer the 21 characters or they go outside the box.
+
         playAgain();
 
     }
-
 
     private void west1Smith(){
         if (mightPotion != 3){
@@ -607,14 +584,12 @@ public class Adventure1Storyline {
 
     private void west2Smith(){
         uIscreen.mainTextArea.setText("You approach the dwarf. He looks at you, waiting. \n\nWhat do you do");
-        // Dont the characters longer the 21 characters or they go outside the box.
         talkingWithSmith();
     }
 
     private void west3Smith(){
-        infoBandit = 1;
+        creatureBandit.specialStatus = true;
         uIscreen.mainTextArea.setText("Dwarf Blacksmith: Aye there is a bandit that has stolen my Might Potion, I can't work without it. If you retrieve the potion for me I will give you my best armor.\nI have heard that the bandit is to the east on the left alleyway. Dont go to into the right alleyway! trust me");
-
         talkingWithSmith();
 
     }
@@ -671,7 +646,7 @@ public class Adventure1Storyline {
 
     private void south1Swamp(){
         uIscreen.mainTextArea.setText("You go south to the swamp. Your hear roars and large foot steps.\n\nWhat do You do?");
-        // Don*t the characters longer the 21 characters or they go outside the box.
+
         uIscreen.choice1.setText("Go toward the sound");
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
