@@ -78,5 +78,12 @@ There is a class diagram in the information folder/package
 
 In the src -> Bugs-in-the-Game. Is used to play test the game. If I ever spotted a bug I added it to the list.
 
+## Wandering Cape Road Map
+
+1. Quests display
+2. Expirance points
+3. Inventory
+
+
 
 
