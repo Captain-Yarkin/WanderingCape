@@ -216,15 +216,7 @@ public class Storyline {
     private void backToSleep(){
         uIscreen.mainTextArea.setText("As you fall a sleep for the final time. It seems like you dont wake up.\nGAME OVER");
 
-        uIscreen.choice1.setText("Play Again");
-        uIscreen.choice2.setText("");
-        uIscreen.choice3.setText("");
-        uIscreen.choice4.setText("");
-
-        game.nextPosition1 = "newGame";
-        game.nextPosition2 = "";
-        game.nextPosition3 = "";
-        game.nextPosition4 = "";
+        displayPlayAgain();
     }
 
     private void north1Forest(){
@@ -575,45 +567,21 @@ public class Storyline {
 
         uIscreen.mainTextArea.setText("You are dead\n\n<GAME OVER>");
         // Dont the characters longer the 21 characters or they go outside the box.
-        uIscreen.choice1.setText("Play Again");
-        uIscreen.choice2.setText("");
-        uIscreen.choice3.setText("");
-        uIscreen.choice4.setText("");
-
-        game.nextPosition1 = "newGame";
-        game.nextPosition2 = "";
-        game.nextPosition3 = "";
-        game.nextPosition4 = "";
+        displayPlayAgain();
 
     }
     private void gameoverNorth(){
         uIscreen.stopSound();
         uIscreen.mainTextArea.setText("You walk of the trail and become part of the tree men, ending you adventure\n\n<GAME OVER>");
         // Dont the characters longer the 21 characters or they go outside the box.
-        uIscreen.choice1.setText("Play Again");
-        uIscreen.choice2.setText("");
-        uIscreen.choice3.setText("");
-        uIscreen.choice4.setText("");
-
-        game.nextPosition1 = "newGame";
-        game.nextPosition2 = "";
-        game.nextPosition3 = "";
-        game.nextPosition4 = "";
+        displayPlayAgain();
     }
 
     private void gameoverEast(){
         uIscreen.stopSound();
         uIscreen.mainTextArea.setText("As you walk into the alleyway on the right and see a protest for equal rights movement. Your adventure stops here as your carrier of equal right starts instead.\n\n<GAME OVER>");
         // Dont the characters longer the 21 characters or they go outside the box.
-        uIscreen.choice1.setText("Play Again");
-        uIscreen.choice2.setText("");
-        uIscreen.choice3.setText("");
-        uIscreen.choice4.setText("");
-
-        game.nextPosition1 = "newGame";
-        game.nextPosition2 = "";
-        game.nextPosition3 = "";
-        game.nextPosition4 = "";
+        displayPlayAgain();
 
     }
 
@@ -772,6 +740,10 @@ public class Storyline {
     private void win(){
         uIscreen.mainTextArea.setText("As you slay the troll, you cut off its head going back to the village.\nThe Elder greets your thanking you forgiving all you school and drinking debts\n\nYOU WIN");
 
+        displayPlayAgain();
+    }
+
+    private void displayPlayAgain() {
         uIscreen.choice1.setText("Play Again");
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
