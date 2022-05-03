@@ -1,6 +1,9 @@
 package GUI;
 
 import GUI.UI.ChoiceControls;
+import GUI.UI.UIAdventureButton;
+import GUI.UI.UIButtonChoice;
+import GUI.UI.UIPlayerLabel;
 import Sound.Sound;
 
 import javax.swing.*;
@@ -49,7 +52,7 @@ public class UIscreen {
         titleNameLabel.setForeground(foregroundColor);
         titleNameLabel.setFont(titleFont);
         titleNamePanel.add(titleNameLabel);
-            //Start button panel and button
+        //Start button panel and button
         startButtonPanel = new JPanel();
         startButtonPanel.setBounds(425,500, 250, 150);
         startButtonPanel.setBackground(backgroundColor);
@@ -74,39 +77,24 @@ public class UIscreen {
         adventureNameLabel.setFont(adventureFont);
         adventureNamePanel.add(adventureNameLabel);
         gameWindow.add(adventureNamePanel);
-            //Choose buttons
+        //Choose buttons
         chooseAdvPanel = new JPanel();
         chooseAdvPanel.setBounds(350,400,400,200);
         chooseAdvPanel.setBackground(backgroundColor);
         chooseAdvPanel.setLayout(new GridLayout(3,1));
-            //Choose "Adventure 1" Demo adventure
-        adventure1Button = new JButton("What happened yesterday?");
-        adventure1Button.setBackground(backgroundColor);
-        adventure1Button.setForeground(foregroundColor);
-        adventure1Button.setFont(normalFont);
-        adventure1Button.setFocusPainted(false);
-        adventure1Button.addActionListener(choiceHandler);
-        adventure1Button.setActionCommand("adventure1");
-        chooseAdvPanel.add(adventure1Button);
-            //Choose "Adventure 2" First Adventure
-        adventure2Button = new JButton("<Coming Soon>"); // Adventure: Pirate Haven
-        adventure2Button.setBackground(backgroundColor);
-        adventure2Button.setForeground(Color.RED);
-        adventure2Button.setFont(normalFont);
-        adventure2Button.setFocusPainted(false);
-        adventure2Button.addActionListener(choiceHandler);
-        adventure2Button.setActionCommand("adventure2");
-        chooseAdvPanel.add(adventure2Button);
+        //Choose "Adventure 1" Demo adventure
 
+        adventure1Button = new UIAdventureButton("What happened yesterday?", backgroundColor, foregroundColor, normalFont, choiceHandler, "adventure1");
+        adventure2Button = new UIAdventureButton("<Coming Soon>", backgroundColor, Color.RED, normalFont, choiceHandler, "adventure2");
+
+        chooseAdvPanel.add(adventure1Button);
+        chooseAdvPanel.add(adventure2Button);
 
         gameWindow.add(chooseAdvPanel);
 
-
-
-
         //CHOICE WINDOW
 
-            //Where the text appears to describe the scene
+        //Where the text appears to describe the scene
         mainTextPanel = new JPanel();
         mainTextPanel.setBounds(150,100,800,350);
         mainTextPanel.setBackground(backgroundColor);
@@ -122,87 +110,44 @@ public class UIscreen {
         mainTextArea.setEditable(false);
         mainTextPanel.add(mainTextArea);
 
-            //Choice box with buttons
+        //Choice box with buttons
         choiceButtonPanel = new JPanel();
         choiceButtonPanel.setBounds(400,500,300,150);
         choiceButtonPanel.setBackground(backgroundColor);
         choiceButtonPanel.setLayout(new GridLayout(4,1));
         gameWindow.add(choiceButtonPanel);
 
-            //Choice box buttons
-                //Choice 1
-        choice1 = new JButton("1");
-        choice1.setBackground(backgroundColor);
-        choice1.setForeground(foregroundColor);
-        choice1.setFont(normalFont);
-        choice1.setFocusPainted(false);
-        choice1.addActionListener(choiceHandler);
-        choice1.setActionCommand("choice1");
+        //Choice box buttons
+        choice1 = new UIButtonChoice(backgroundColor, foregroundColor, normalFont, choiceHandler, "choice1");
+        choice2 = new UIButtonChoice(backgroundColor, foregroundColor, normalFont, choiceHandler, "choice2");
+        choice3 = new UIButtonChoice(backgroundColor, foregroundColor, normalFont, choiceHandler, "choice3");
+        choice4 = new UIButtonChoice(backgroundColor, foregroundColor, normalFont, choiceHandler, "choice4");
+
         choiceButtonPanel.add(choice1);
-                //Choice 2
-        choice2 = new JButton("2");
-        choice2.setBackground(backgroundColor);
-        choice2.setForeground(foregroundColor);
-        choice2.setFont(normalFont);
-        choice2.setFocusPainted(false);
-        choice2.addActionListener(choiceHandler);
-        choice2.setActionCommand("choice2");
         choiceButtonPanel.add(choice2);
-                //Choice 3
-        choice3 = new JButton("3");
-        choice3.setBackground(backgroundColor);
-        choice3.setForeground(foregroundColor);
-        choice3.setFont(normalFont);
-        choice3.setFocusPainted(false);
-        choice3.addActionListener(choiceHandler);
-        choice3.setActionCommand("choice3");
         choiceButtonPanel.add(choice3);
-                //Choice 4
-        choice4 = new JButton("4");
-        choice4.setBackground(backgroundColor);
-        choice4.setForeground(foregroundColor);
-        choice4.setFont(normalFont);
-        choice4.setFocusPainted(false);
-        choice4.addActionListener(choiceHandler);
-        choice4.setActionCommand("choice4");
         choiceButtonPanel.add(choice4);
-            //Player Panel
+
+        //Player Panel
         playerPanel = new JPanel();
         playerPanel.setBounds(100,15,900,50);
         playerPanel.setBackground(backgroundColor);
         playerPanel.setLayout(new GridLayout(1,6));
         gameWindow.add(playerPanel);
-            //Health label name
-        healthLabel = new JLabel("Health: ");
-        healthLabel.setFont(normalFont);
-        healthLabel.setForeground(foregroundColor);
-        playerPanel.add(healthLabel);
-            //Health Label number
-        healthNumberLabel = new JLabel();
-        healthNumberLabel.setFont(normalFont);
-        healthNumberLabel.setForeground(foregroundColor);
-        playerPanel.add(healthNumberLabel);
-            //Weapon Label name
-        weaponLabel = new JLabel("Weapon: ");
-        weaponLabel.setFont(normalFont);
-        weaponLabel.setForeground(foregroundColor);
-        playerPanel.add(weaponLabel);
-            //Weapon Label name type
-        weaponNameLabel = new JLabel();
-        weaponNameLabel.setFont(normalFont);
-        weaponNameLabel.setForeground(foregroundColor);
-        playerPanel.add(weaponNameLabel);
-            //Armor Label name
-        armorLabel = new JLabel("Armor: ");
-        armorLabel.setFont(normalFont);
-        armorLabel.setForeground(foregroundColor);
-        playerPanel.add(armorLabel);
-            //Armor label name type
-        armorNameLabel = new JLabel();
-        armorNameLabel.setFont(normalFont);
-        armorNameLabel.setForeground(foregroundColor);
-        playerPanel.add(armorNameLabel);
 
+        healthLabel = new UIPlayerLabel("Health: ", foregroundColor, normalFont);
+        healthNumberLabel = new UIPlayerLabel(foregroundColor, normalFont);
+        weaponLabel = new UIPlayerLabel("Weapon: ", foregroundColor, normalFont);
+        weaponNameLabel = new UIPlayerLabel(foregroundColor, normalFont);
+        armorLabel = new UIPlayerLabel("Armor: ", foregroundColor, normalFont);
+        armorNameLabel = new UIPlayerLabel(foregroundColor, normalFont);
+
+        playerPanel.add(healthLabel);
+        playerPanel.add(healthNumberLabel);
+        playerPanel.add(weaponLabel);
+        playerPanel.add(weaponNameLabel);
+        playerPanel.add(armorLabel);
+        playerPanel.add(armorNameLabel);
     }
 
     public void playTheme (int n) {
