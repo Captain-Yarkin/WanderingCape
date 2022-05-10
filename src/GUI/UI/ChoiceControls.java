@@ -30,13 +30,14 @@ public class ChoiceControls implements ActionListener {
             case "choice4" -> game.adventure1Storyline.selectPosition(game.nextPosition4);
 
             case "adventure1" -> {
-                game.visibilityManager.chooseAdvToChoiceScreen();
+                game.visibilityManager.chooseAdvToChoiceScreen();game.adventure1Storyline.gameStart();
                 game.adventure1Storyline.tavern();
             }
-            //case "adventure2" -> {
-            // game.visibilityManager.chooseAdvToChoiceScreen();
-            // game.pirateStoryline.beach();
-            //}
+            /*
+            case "adventure2" -> {
+             game.visibilityManager.chooseAdvToChoiceScreen();game.adventure2Storyline.gameStart();
+            }
+             */
         }
 
     }

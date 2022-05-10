@@ -4,6 +4,7 @@ package Game;
 
 
 import Adventures.Adventure1.Adventure1Storyline;
+import Adventures.Adventure2.Adventure2Storyline;
 import GUI.UI.ChoiceControls;
 import GUI.UI.VisibilityManager;
 import GUI.UIscreen;
@@ -24,6 +25,8 @@ public class Game {
 
 
     public Adventure1Storyline adventure1Storyline = new Adventure1Storyline(this, uIscreen, visibilityManager, player);
+    public Adventure2Storyline adventure2Storyline = new Adventure2Storyline(this, uIscreen,visibilityManager,player);
+
 
     /**
      * main function
@@ -40,9 +43,8 @@ public class Game {
      */
     public Game() {
         uIscreen.createScreen(choiceHandler);
-        adventure1Storyline.gameStart();
         visibilityManager.showTitleScreen();
-        uIscreen.playTheme(0);
+
     }
 }
 

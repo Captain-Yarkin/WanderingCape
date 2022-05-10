@@ -424,7 +424,6 @@ public class Adventure1Storyline {
             battle();
 
         }
-
         uIscreen.choice1.setText("Continue");
         uIscreen.choice2.setText("");
         uIscreen.choice3.setText("");
@@ -457,7 +456,6 @@ public class Adventure1Storyline {
         if(creatureBattling.name.equals(new NPCPeasant().name)){
             peasantSlain();
         }
-
     }
     private void bushSlain(){
         uIscreen.mainTextArea.setText("You defeated the "+ creatureCommon.name + " the monster was a simple bush" + "\nWhat do you do?");
@@ -668,8 +666,6 @@ public class Adventure1Storyline {
      * gives the player defaultStatus and shows the title screen when called
      */
     public void newGame(){
-        uIscreen.stopSound();
-        uIscreen.playTheme(0);
         gameStart();
         visibilityManager.showTitleScreen();
     }

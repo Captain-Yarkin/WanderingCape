@@ -27,6 +27,7 @@ public class VisibilityManager implements IVisibilityManager {
         ui.playerPanel.setVisible(false);
         ui.adventureNamePanel.setVisible(false);
         ui.chooseAdvPanel.setVisible(false);
+        ui.playTheme(0);
 
 
     }

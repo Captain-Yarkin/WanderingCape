@@ -1,6 +1,8 @@
 package Adventures.Adventure2;
 
 import Creature.CreatureMold;
+import Equipment.Armor.ArmorIron;
+import Equipment.Weapons.WeaponShortsword;
 import GUI.UI.VisibilityManager;
 import GUI.UIscreen;
 import Game.Game;
@@ -18,6 +20,11 @@ public class Adventure2Storyline {
         this.uIscreen = ui;
         this.visibilityManager = vm;
         this.player = player;
+    }
+
+    public void gameStart(){
+        player.setDefaultStatus(20, new WeaponShortsword(), new ArmorIron());
+
     }
 
 
